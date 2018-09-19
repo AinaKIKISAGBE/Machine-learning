@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0049)http://www.r-tutor.com/deep-learning/introduction -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" class="js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Deep Learning in R | R Tutorial</title>
+
+<link rel="shortcut icon" href="http://www.r-tutor.com/sites/www.r-tutor.com/themes/elitecircle/favicon.ico" type="image/x-icon">
+<meta name="description" content="Introduction on deep learning in R using GPU. It demonstrates how to train a deep convolutional network on the CIFAR10 dataset.">
+<meta name="keywords" content="deep learning,predict,rpudl,rpudlCreateDataSource,rpudlFindTrainingDataMean,rpudlGetLayerWeights,rpudlGetTestingDataSample,rpudlPlotLayerWeights">
+<meta name="copyright" content="Copyright (C) 2009 - 2014 Chi Yau. All Rights Reserved.">
+<link rel="canonical" href="http://www.r-tutor.com/deep-learning/introduction">
+<meta name="revisit-after" content="5 days">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/aggregator.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/book.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/node.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/defaults.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/system.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/system-menus.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/user.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/jquerymenu.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/quotes.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/views.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/style.css">
+<link type="text/css" rel="stylesheet" media="all" href="./Deep Learning in R _ R Tutorial_files/tex4ht.css">
+<!--[if IE]>
+  <link type="text/css" rel="stylesheet" media="all" href="/sites/default/themes/elitecircle/fix-ie.css" /><![endif]-->
+<script type="text/javascript" async="" src="./Deep Learning in R _ R Tutorial_files/ga.js.téléchargement"></script><script type="text/javascript" async="" src="./Deep Learning in R _ R Tutorial_files/ga.js.téléchargement"></script><script type="text/javascript" src="./Deep Learning in R _ R Tutorial_files/jquery.js.téléchargement"></script>
+<script type="text/javascript" src="./Deep Learning in R _ R Tutorial_files/drupal.js.téléchargement"></script>
+<script type="text/javascript" src="./Deep Learning in R _ R Tutorial_files/googleanalytics.js.téléchargement"></script>
+<script type="text/javascript" src="./Deep Learning in R _ R Tutorial_files/jquerymenu.js.téléchargement"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "googleanalytics": { "trackOutbound": 1, "trackMailto": 1, "trackDownload": 1, "trackDownloadExtensions": "7z|aac|arc|arj|asf|asx|avi|bin|csv|doc|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip" } });
+//--><!]]>
+</script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+window.google_analytics_uacct = "UA-9827360-1";
+//--><!]]>
+</script>
+<script type="text/javascript"> </script>
+<!--<base href="http://www.r-tutor.com/sites/default/files/images/">--><base href=".">
+</head>
+		
+<body class="not-front not-logged-in page-node node-type-story one-sidebar sidebar-right">
+	
+	<!-- header starts here -->
+	<div id="header-wrap"><div id="header-content">	
+		
+		<div id="logo"><a href="http://www.r-tutor.com/">R<span class="orange"> Tutorial</span></a></div>	
+		    		<h2 id="slogan">An R Introduction to Statistics</h2>
+   		
+		<div id="header-links">
+                    <ul class="links secondary-links"><li class="menu-262 first"><a href="http://www.r-tutor.com/content/about" title="About us">About</a></li>
+<li class="menu-2376"><a href="http://www.r-tutor.com/content/contact-us" title="Contact us for suggestion and comments.">Contact</a></li>
+<li class="menu-914"><a href="http://www.r-tutor.com/content/resources" title="Useful links and resources">Resources</a></li>
+<li class="menu-906 last"><a href="http://www.r-tutor.com/content/terms-use" title="The legal usage terms of r-tutor.com">Terms of Use</a></li>
+</ul>        		</div>
+		
+		<!-- Menu Tabs -->
+		   			<ul class="links primary-links"><li class="menu-260 first"><a href="http://www.r-tutor.com/" title="Home page">Home</a></li>
+<li class="menu-2332"><a href="http://www.r-tutor.com/content/download" title="Download page">Download</a></li>
+<li class="menu-2515"><a href="http://www.r-tutor.com/content/sales" title="Sales">Sales</a></li>
+<li class="menu-2419"><a href="http://www.r-tutor.com/content/r-tutorial-ebook" title="R Tutorial and Exercise Solution eBook">eBook</a></li>
+<li class="menu-1073 last"><a href="http://www.r-tutor.com/sitemap" title="Site index and RSS feed">Site Map</a></li>
+</ul>   			
+	</div></div>
+				
+	<!-- content-wrap starts here -->
+	<div id="content-wrap"><div id="content">
+	
+	    <div id="main">		
+												<h1>Deep Learning in R</h1>	 		<div id="node-162" class="node sticky">
+
+
+<div class="submitted">
+    </div>
+
+<div class="content clear-block">
+    
+<p class="noindent">
+Deep learning has a wide range of applications, from speech recognition,
+computer vision, to self-driving cars and mastering the game of Go. While the
+concept is intuitive, the implementation is often heuristic and tedious. We
+will take a stab at simplifying the process, and make the technology more
+accessible.
+</p>
+   <h4 class="likesubsectionHead"><a id="x1-1000"></a>Example</h4>
+<!--l. 36--><p class="noindent">We illustrate our approach with the venerable <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10 dataset</a>. The following code
+snippet will download the data from its known location to a folder “<span class="ecss-1000">data/cifar</span>” inside
+the current working directory. It also creates a data source object for later
+use.
+</p>
+   <!--l. 41-->
+   <div class="lstlisting" id="listing-1"><span class="label"><a id="x1-1001r1"></a></span>&gt;&nbsp;library(rpud)&nbsp;<br><span class="label"><a id="x1-1002r2"></a></span>&gt;&nbsp;ds&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;rpudlCreateDataSource(&nbsp;<br><span class="label"><a id="x1-1003r3"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.format="cifar10",&nbsp;<br><span class="label"><a id="x1-1004r4"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.dir="data/cifar"&nbsp;<br><span class="label"><a id="x1-1005r5"></a></span>+&nbsp;)
+   
+   </div>
+<!--l. 50--><p class="indent">   The training process requires us to pre-compute the mean value of the training
+data. The following will save the result to a file “<span class="ecss-1000">cifar10-data.mean</span>” inside the data
+source’s directory.
+</p>
+   <!--l. 54-->
+                                                                  
+
+                                                                  
+   <div class="lstlisting" id="listing-2"><span class="label"><a id="x1-1006r1"></a></span>&gt;&nbsp;rpudlFindTrainingDataMean(ds,&nbsp;filename="cifar10<span class="cmsy-10">-</span>data.mean")
+   
+   </div>
+<!--l. 59--><p class="indent">   We then create a model object using a script named <a href="http://www.r-tutor.com/sites/default/files/rpudl/cifar10_quick_train.prototxt">cifar10_quick_train.prototxt</a>.
+The script is written in <a href="https://github.com/google/protobuf/wiki">Google Protocol Buffers</a> format. There is a local copy of the
+script in the <span class="ecss-1000">rpudl </span>folder of the <span class="ecss-1000">rpud </span>installation directory, which is what we will use
+below. The script is based on the <span class="ecss-1000">cifar10 </span>example of the Caffe framework. If
+interested, you can also find the message type definition “rpudl_model.proto” in the
+same local folder.
+</p>
+   <!--l. 67-->
+   <div class="lstlisting" id="listing-3"><span class="label"><a id="x1-1007r1"></a></span>&gt;&nbsp;rpudl.path&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;file.path(path.package(package="rpud"),&nbsp;"rpudl")&nbsp;<br><span class="label"><a id="x1-1008r2"></a></span>&gt;&nbsp;model&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;rpudl(&nbsp;<br><span class="label"><a id="x1-1009r3"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file.path(rpudl.path,&nbsp;"cifar10_quick_train.prototxt"),&nbsp;<br><span class="label"><a id="x1-1010r4"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.source=ds&nbsp;<br><span class="label"><a id="x1-1011r5"></a></span>+&nbsp;)
+   
+   </div>
+<!--l. 76--><p class="indent">   Now we are ready to train the model. The training process takes about 280
+seconds on a GTX 660Ti. The result is a new model object with updated parameters.
+Here, we overwrite the previous model object for simplicity. Should we save the result
+in a separate model object, we can have a history of the trained models. It reaches
+about 72% accuracy after 4,000 iterations.
+</p>
+   <!--l. 83-->
+   <div class="lstlisting" id="listing-4"><span class="label"><a id="x1-1012r1"></a></span>&gt;&nbsp;system.time(model&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;rpudlTrain(&nbsp;<br><span class="label"><a id="x1-1013r2"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model,&nbsp;batch=100,&nbsp;iter=4000))&nbsp;<br><span class="label"><a id="x1-1014r3"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;....&nbsp;<br><span class="label"><a id="x1-1015r4"></a></span>training&nbsp;@iter&nbsp;3800,&nbsp;cost&nbsp;0.535023,&nbsp;accuracy&nbsp;74%&nbsp;<br><span class="label"><a id="x1-1016r5"></a></span>training&nbsp;@iter&nbsp;3900,&nbsp;cost&nbsp;0.689107,&nbsp;accuracy&nbsp;73%&nbsp;<br><span class="label"><a id="x1-1017r6"></a></span>training&nbsp;@iter&nbsp;4000,&nbsp;cost&nbsp;0.655459,&nbsp;accuracy&nbsp;78%&nbsp;<br><span class="label"><a id="x1-1018r7"></a></span>training&nbsp;ends&nbsp;with&nbsp;average&nbsp;cost&nbsp;of&nbsp;0.951724,&nbsp;and&nbsp;accuracy&nbsp;71.78%&nbsp;<br><span class="label"><a id="x1-1019r8"></a></span>&nbsp;&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed&nbsp;<br><span class="label"><a id="x1-1020r9"></a></span>210.04&nbsp;&nbsp;&nbsp;70.17&nbsp;&nbsp;279.78
+   
+   </div>
+<!--l. 96--><p class="indent">   We then resume the training with a smaller learning rate. It takes about 72
+seconds for another 1,000 iterations, and improves the accuracy to 75%.
+</p>
+   <!--l. 100-->
+   <div class="lstlisting" id="listing-5"><span class="label"><a id="x1-1021r1"></a></span>&gt;&nbsp;system.time(model&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;rpudlTrain(&nbsp;<br><span class="label"><a id="x1-1022r2"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;model,&nbsp;batch=100,&nbsp;iter=1000,&nbsp;learning.rate=0.0001)&nbsp;<br><span class="label"><a id="x1-1023r3"></a></span>+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&nbsp;<br><span class="label"><a id="x1-1024r4"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;....&nbsp;<br><span class="label"><a id="x1-1025r5"></a></span>training&nbsp;@iter&nbsp;4800,&nbsp;cost&nbsp;0.416993,&nbsp;accuracy&nbsp;72%&nbsp;<br><span class="label"><a id="x1-1026r6"></a></span>training&nbsp;@iter&nbsp;4900,&nbsp;cost&nbsp;0.43716,&nbsp;accuracy&nbsp;79%&nbsp;<br><span class="label"><a id="x1-1027r7"></a></span>training&nbsp;@iter&nbsp;5000,&nbsp;cost&nbsp;0.456889,&nbsp;accuracy&nbsp;77%&nbsp;<br><span class="label"><a id="x1-1028r8"></a></span>training&nbsp;ends&nbsp;with&nbsp;average&nbsp;cost&nbsp;of&nbsp;0.874285,&nbsp;and&nbsp;accuracy&nbsp;75.43%&nbsp;<br><span class="label"><a id="x1-1029r9"></a></span>&nbsp;user&nbsp;&nbsp;system&nbsp;elapsed&nbsp;<br><span class="label"><a id="x1-1030r10"></a></span>53.97&nbsp;&nbsp;&nbsp;18.06&nbsp;&nbsp;&nbsp;71.92
+   
+   </div>
+<!--l. 114--><p class="indent">   For demonstration purpose, we extract 12 samples from the testing data, and run
+prediction against the trained model.
+</p>
+   <!--l. 117-->
+   <div class="lstlisting" id="listing-6"><span class="label"><a id="x1-1031r1"></a></span>&gt;&nbsp;num&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;12&nbsp;<br><span class="label"><a id="x1-1032r2"></a></span>&gt;&nbsp;obj&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;rpudlGetTestingDataSamples(ds,&nbsp;c(1,&nbsp;num))&nbsp;<br><span class="label"><a id="x1-1033r3"></a></span>&gt;&nbsp;res&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;predict(model,&nbsp;obj$x)&nbsp;<br><span class="label"><a id="x1-1034r4"></a></span>&gt;&nbsp;sum((obj$y)&nbsp;==&nbsp;res)&nbsp;<br><span class="label"><a id="x1-1035r5"></a></span>[1]&nbsp;12
+   
+   </div>
+<!--l. 126--><p class="indent">   The model object keeps a history of model cost, which we can print out with the
+<span class="ecss-1000">qplot </span>method from the <span class="ecss-1000">ggplot2 </span>library.
+</p>
+   <!--l. 129-->
+                                                                  
+
+                                                                  
+   <div class="lstlisting" id="listing-7"><span class="label"><a id="x1-1036r1"></a></span>&gt;&nbsp;library(ggplot2)&nbsp;<br><span class="label"><a id="x1-1037r2"></a></span>&gt;&nbsp;costs&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;model$cost.log&nbsp;<br><span class="label"><a id="x1-1038r3"></a></span>&gt;&nbsp;qplot(1:length(costs),&nbsp;costs,&nbsp;geom="smooth")
+   
+   </div>
+<!--l. 136--><p class="indent">   <img src="./Deep Learning in R _ R Tutorial_files/r-deep-learning0x.png" alt="PIC" class="graphics"><!--tex4ht:graphics  
+name="r-deep-learning0x.png" src="r-deep-learning-images/cifar10_quick_train_cost_plot.eps"  
+-->
+</p><!--l. 138--><p class="indent">   We can also have a picture of the weight parameters of a convolutional layer using
+a <span class="ecss-1000">rpudlPlotLayerWeights </span>method.
+</p>
+                                                                  
+
+                                                                  
+   <!--l. 141-->
+   <div class="lstlisting" id="listing-8"><span class="label"><a id="x1-1039r1"></a></span>&gt;&nbsp;weights&nbsp;&lt;<span class="cmsy-10">-</span>&nbsp;rpudlGetLayerWeights(model,&nbsp;"conv1")&nbsp;<br><span class="label"><a id="x1-1040r2"></a></span>&gt;&nbsp;rpudlPlotLayerWeights(weights)
+   
+   </div>
+<!--l. 147--><p class="indent">   <img src="./Deep Learning in R _ R Tutorial_files/r-deep-learning1x.png" alt="PIC" class="graphics"><!--tex4ht:graphics  
+name="r-deep-learning1x.png" src="r-deep-learning-images/cifar10_quick_train_conv1_weights.eps"  
+-->
+                                                                  
+
+                                                                  
+</p><!--l. 150--><p class="noindent">
+</p>
+   <h4 class="likesubsectionHead"><a id="x1-2000"></a>Notes</h4>
+<!--l. 151--><p class="noindent">
+     </p><ol class="enumerate1">
+     <li class="enumerate" id="x1-2002x1">Currently, the <span class="ecss-1000">rpudl </span>methods are accessible <span class="ecti-1000">even without </span>an active <span class="ecss-1000">rpudplus</span>
+     license.
+     </li>
+     <li class="enumerate" id="x1-2004x2">There  are  more  examples  to  try  out  in  the  <span class="ecss-1000">rpudl  </span>folder  of  the  <span class="ecss-1000">rpud</span>
+     installation directory.
+     </li>
+     <li class="enumerate" id="x1-2006x3">The supported data formats are <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR</a>, <a href="http://yann.lecun.com/exdb/mnist/">MNIST</a> and <a href="https://symas.com/products/lightning-memory-mapped-database/">LMDB</a>. To train with
+     your own data, you have to export your data to an <span class="ecss-1000">LMDB </span>database according
+     to the following message type: <!--l. 160-->
+     <div class="lstlisting" id="listing-9"><span class="label"><a id="x1-2007r1"></a></span>message&nbsp;Datum&nbsp;{&nbsp;<br><span class="label"><a id="x1-2008r2"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;required&nbsp;bytes&nbsp;data&nbsp;=&nbsp;1;&nbsp;<br><span class="label"><a id="x1-2009r3"></a></span>&nbsp;&nbsp;&nbsp;&nbsp;required&nbsp;uint32&nbsp;label&nbsp;=&nbsp;2;&nbsp;<br><span class="label"><a id="x1-2010r4"></a></span>}
+     
+     </div>
+     </li>
+     <li class="enumerate" id="x1-2012x4">The current object model consists of a simple processing pipeline. It does not
+     support Long Short-Term Memory (LSTM) or Network-In-Network (NIN)
+     models. We will address these limitations in upcoming releases.</li></ol>
+<!--l. 172--><p class="noindent">
+</p>
+   <h4 class="likesubsectionHead"><a id="x1-3000"></a>References</h4>
+<!--l. 173--><p class="noindent">
+     </p><ol class="enumerate1">
+     <li class="enumerate" id="x1-3002x1">Yangqing Jia, Evan Shelhamer, <span class="ecti-1000">et al</span>: <span class="ecti-1000">Caffe - A Deep Learning Framework</span>
+     <a href="http://caffe.berkeleyvision.org/">http://caffe.berkeleyvision.org</a>.
+     </li>
+     <li class="enumerate" id="x1-3004x2">Google  Research:  <span class="ecti-1000">TensorFlow  -  An  Open  Source  Software  Library  for</span>
+     <span class="ecti-1000">Machine Intelligence </span><a href="https://www.tensorflow.org/">https://www.tensorflow.org</a>.
+     </li>
+     <li class="enumerate" id="x1-3006x3">Deep Learning: <span class="ecti-1000">Theano - An Open Source Machine Learning Library for</span>
+     <span class="ecti-1000">Python </span><a href="http://deeplearning.net/software/theano">http://deeplearning.net/software/theano</a>.</li></ol></div>
+
+    <div class="node-links">
+                    <div class="terms">
+                Tags:  <ul class="links inline"><li class="taxonomy_term_336 first"><a href="http://www.r-tutor.com/taxonomy/term/336" rel="tag" title="Describe how to use the RPUDL deep learning methods in RPUDPLUS.">Deep Learning in R</a></li>
+<li class="taxonomy_term_337"><a href="http://www.r-tutor.com/taxonomy/term/337" rel="tag" title="">deep learning</a></li>
+<li class="taxonomy_term_190"><a href="http://www.r-tutor.com/category/r-functions/predict" rel="tag" title="">predict</a></li>
+<li class="taxonomy_term_338"><a href="http://www.r-tutor.com/taxonomy/term/338" rel="tag" title="">rpudl</a></li>
+<li class="taxonomy_term_339"><a href="http://www.r-tutor.com/taxonomy/term/339" rel="tag" title="">rpudlCreateDataSource</a></li>
+<li class="taxonomy_term_342"><a href="http://www.r-tutor.com/taxonomy/term/342" rel="tag" title="">rpudlFindTrainingDataMean</a></li>
+<li class="taxonomy_term_340"><a href="http://www.r-tutor.com/taxonomy/term/340" rel="tag" title="">rpudlGetLayerWeights</a></li>
+<li class="taxonomy_term_343"><a href="http://www.r-tutor.com/taxonomy/term/343" rel="tag" title="">rpudlGetTestingDataSample</a></li>
+<li class="taxonomy_term_341"><a href="http://www.r-tutor.com/taxonomy/term/341" rel="tag" title="">rpudlPlotLayerWeights</a></li>
+<li class="taxonomy_term_257 last"><a href="http://www.r-tutor.com/taxonomy/term/257" rel="tag" title="">rpud</a></li>
+</ul>            </div>
+                <div class="post-footer align-right">
+                        <ul class="links inline"><li class="comment_forbidden first last"></li>
+</ul>        </div>
+    </div>
+
+</div>
+	 		<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-9827360-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+		</div>		
+	
+		<div id="sidebar">	
+      		                <div id="search-box"><form action="http://www.r-tutor.com/deep-learning/introduction" accept-charset="UTF-8" method="post" id="search-theme-form">
+<div><div id="search" class="container-inline">
+  <div class="form-item" id="edit-search-theme-form-1-wrapper">
+ <label for="edit-search-theme-form-1">Search this site: </label>
+ <input type="text" maxlength="128" name="search_theme_form" id="edit-search-theme-form-1" size="15" value="" title="Enter the terms you wish to search for." class="form-text">
+</div>
+<input type="submit" name="op" id="edit-submit" value="Search" class="form-submit">
+<input type="hidden" name="form_build_id" id="form-t7mrTwHJUJFZSyEWM5F29Y_qbpDL2XXbqekktBEcLu4" value="form-t7mrTwHJUJFZSyEWM5F29Y_qbpDL2XXbqekktBEcLu4">
+<input type="hidden" name="form_id" id="edit-search-theme-form" value="search_theme_form">
+</div>
+
+</div></form>
+</div>
+        	
+                        <div id="block-rtutorbook-0" class="block block-rtutorbook">
+  <h2><a href="http://www.r-tutor.com/content/r-tutorial-ebook">R Tutorial eBook</a></h2>
+
+  <div class="content">
+    <a href="http://www.r-tutor.com/content/r-tutorial-ebook"><img src="./Deep Learning in R _ R Tutorial_files/r-tutorial-thumbnail-v4-140x182.jpg" alt="R Tutorial eBook"></a>  </div>
+</div>
+<div id="block-advancedbookblocks-0" class="block block-advancedbookblocks">
+  <h2>R Tutorials</h2>
+
+  <div class="content">
+    <!--[if IE]><div class="ie"><![endif]--><ul class="menu jquerymenu jquerymenu-processed"><li class="parent closed"><span class="parent closed"></span><a href="http://www.r-tutor.com/r-introduction" title="R Introduction">R Introduction</a><ul style="display: none;"><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/r-introduction/basic-data-types" title="Basic Data Types">Basic Data Types</a><ul><li><a href="http://www.r-tutor.com/r-introduction/basic-data-types/numeric" title="Numeric">Numeric</a></li><li><a href="http://www.r-tutor.com/r-introduction/basic-data-types/integer" title="Integer">Integer</a></li><li><a href="http://www.r-tutor.com/r-introduction/basic-data-types/complex" title="Complex">Complex</a></li><li><a href="http://www.r-tutor.com/r-introduction/basic-data-types/logical" title="Logical">Logical</a></li><li><a href="http://www.r-tutor.com/r-introduction/basic-data-types/character" title="Character">Character</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/r-introduction/vector" title="Vector">Vector</a><ul><li><a href="http://www.r-tutor.com/r-introduction/vector/combining-vectors" title="Combining Vectors">Combining Vectors</a></li><li><a href="http://www.r-tutor.com/r-introduction/vector/vector-arithmetics" title="Vector Arithmetics">Vector Arithmetics</a></li><li><a href="http://www.r-tutor.com/r-introduction/vector/vector-index" title="Vector Index">Vector Index</a></li><li><a href="http://www.r-tutor.com/r-introduction/vector/numeric-index-vector" title="Numeric Index Vector">Numeric Index Vector</a></li><li><a href="http://www.r-tutor.com/r-introduction/vector/logical-index-vector" title="Logical Index Vector">Logical Index Vector</a></li><li><a href="http://www.r-tutor.com/r-introduction/vector/named-vector-members" title="Named Vector Members">Named Vector Members</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/r-introduction/matrix" title="Matrix">Matrix</a><ul><li><a href="http://www.r-tutor.com/r-introduction/matrix/matrix-construction" title="Matrix Construction">Matrix Construction</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/r-introduction/list" title="List">List</a><ul><li><a href="http://www.r-tutor.com/r-introduction/list/named-list-members" title="Named List Members">Named List Members</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/r-introduction/data-frame" title="Data Frame">Data Frame</a><ul><li><a href="http://www.r-tutor.com/r-introduction/data-frame/data-frame-column-vector" title="Data Frame Column Vector">Data Frame Column Vector</a></li><li><a href="http://www.r-tutor.com/r-introduction/data-frame/data-frame-column-slice" title="Data Frame Column Slice">Data Frame Column Slice</a></li><li><a href="http://www.r-tutor.com/r-introduction/data-frame/data-frame-row-slice" title="Data Frame Row Slice">Data Frame Row Slice</a></li><li><a href="http://www.r-tutor.com/r-introduction/data-frame/data-import" title="Data Import">Data Import</a></li></ul></li></ul></li><li class="parent closed"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics" title="Elementary Statistics with R">Elementary Statistics with R</a><ul style="display: none;"><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/qualitative-data" title="Qualitative Data">Qualitative Data</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/qualitative-data/frequency-distribution-qualitative-data" title="Frequency Distribution of Qualitative Data">Frequency Distribution of Qualitative Data</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/qualitative-data/relative-frequency-distribution-qualitative-data" title="Relative Frequency Distribution of Qualitative Data">Relative Frequency Distribution of Qualitative Data</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/qualitative-data/bar-graph" title="Bar Graph">Bar Graph</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/qualitative-data/pie-chart" title="Pie Chart">Pie Chart</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/qualitative-data/category-statistics" title="Category Statistics">Category Statistics</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data" title="Quantitative Data">Quantitative Data</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/frequency-distribution-quantitative-data" title="Frequency Distribution of Quantitative Data">Frequency Distribution of Quantitative Data</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/histogram" title="Histogram">Histogram</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/relative-frequency-distribution-quantitative-data" title="Relative Frequency Distribution of Quantitative Data">Relative Frequency Distribution of Quantitative Data</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/cumulative-frequency-distribution" title="Cumulative Frequency Distribution">Cumulative Frequency Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/cumulative-frequency-graph" title="Cumulative Frequency Graph">Cumulative Frequency Graph</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/cumulative-relative-frequency-distribution" title="Cumulative Relative Frequency Distribution">Cumulative Relative Frequency Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/cumulative-relative-frequency-graph" title="Cumulative Relative Frequency Graph">Cumulative Relative Frequency Graph</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/stem-and-leaf-plot" title="Stem-and-Leaf Plot">Stem-and-Leaf Plot</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/quantitative-data/scatter-plot" title="Scatter Plot">Scatter Plot</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures" title="Numerical Measures">Numerical Measures</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/mean" title="Mean">Mean</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/median" title="Median">Median</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/quartile" title="Quartile">Quartile</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/percentile" title="Percentile">Percentile</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/range" title="Range">Range</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/interquartile-range" title="Interquartile Range">Interquartile Range</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/box-plot" title="Box Plot">Box Plot</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/variance" title="Variance">Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/standard-deviation" title="Standard Deviation">Standard Deviation</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/covariance" title="Covariance">Covariance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/correlation-coefficient" title="Correlation Coefficient">Correlation Coefficient</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/moment" title="Central Moment">Central Moment</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/skewness" title="Skewness">Skewness</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/numerical-measures/kurtosis" title="Kurtosis">Kurtosis</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions" title="Probability Distributions">Probability Distributions</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/binomial-distribution" title="Binomial Distribution">Binomial Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/poisson-distribution" title="Poisson Distribution">Poisson Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/continuous-uniform-distribution" title="Continuous Uniform Distribution">Continuous Uniform Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/exponential-distribution" title="Exponential Distribution">Exponential Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/normal-distribution" title="Normal Distribution">Normal Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/chi-squared-distribution" title="Chi-squared Distribution">Chi-squared Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/student-t-distribution" title="Student t Distribution">Student t Distribution</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/probability-distributions/f-distribution" title="F Distribution">F Distribution</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation" title="Interval Estimation">Interval Estimation</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/point-estimate-population-mean" title="Point Estimate of Population Mean">Point Estimate of Population Mean</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/interval-estimate-population-mean-known-variance" title="Interval Estimate of Population Mean with Known Variance">Interval Estimate of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/interval-estimate-population-mean-unknown-variance" title="Interval Estimate of Population Mean with Unknown Variance">Interval Estimate of Population Mean with Unknown Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/sampling-size-population-mean" title="Sampling Size of Population Mean">Sampling Size of Population Mean</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/point-estimate-population-proportion" title="Point Estimate of Population Proportion">Point Estimate of Population Proportion</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/interval-estimate-population-proportion" title="Interval Estimate of Population Proportion">Interval Estimate of Population Proportion</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/interval-estimation/sampling-size-population-proportion" title="Sampling Size of Population Proportion">Sampling Size of Population Proportion</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing" title="Hypothesis Testing">Hypothesis Testing</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/lower-tail-test-population-mean-known-variance" title="Lower Tail Test of Population Mean with Known Variance">Lower Tail Test of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/upper-tail-test-population-mean-known-variance" title="Upper Tail Test of Population Mean with Known Variance">Upper Tail Test of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/two-tailed-test-population-mean-known-variance" title="Two-Tailed Test of Population Mean with Known Variance">Two-Tailed Test of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/lower-tail-test-population-mean-unknown-variance" title="Lower Tail Test of Population Mean with Unknown Variance">Lower Tail Test of Population Mean with Unknown Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/upper-tail-test-population-mean-unknown-variance" title="Upper Tail Test of Population Mean with Unknown Variance">Upper Tail Test of Population Mean with Unknown Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/two-tailed-test-population-mean-unknown-variance" title="Two-Tailed Test of Population Mean with Unknown Variance">Two-Tailed Test of Population Mean with Unknown Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/lower-tail-test-population-proportion" title="Lower Tail Test of Population Proportion">Lower Tail Test of Population Proportion</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/upper-tail-test-population-proportion" title="Upper Tail Test of Population Proportion">Upper Tail Test of Population Proportion</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/hypothesis-testing/two-tailed-test-population-proportion" title="Two-Tailed Test of Population Proportion">Two-Tailed Test of Population Proportion</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors" title="Type II Error">Type II Error</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors/type-2-errors-lower-tail-test-population-mean-known-variance" title="Type II Error in Lower Tail Test of Population Mean with Known Variance">Type II Error in Lower Tail Test of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors/type-2-errors-upper-tail-test-population-mean-known-variance" title="Type II Error in Upper Tail Test of Population Mean with Known Variance">Type II Error in Upper Tail Test of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors/type-2-errors-two-tailed-test-population-mean-known-variance" title="Type II Error in Two-Tailed Test of Population Mean with Known Variance">Type II Error in Two-Tailed Test of Population Mean with Known Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors/type-2-errors-lower-tail-test-population-mean-unknown-variance" title="Type II Error in Lower Tail Test of Population Mean with Unknown Variance">Type II Error in Lower Tail Test of Population Mean with Unknown Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors/type-2-errors-upper-tail-test-population-mean-unknown-variance" title="Type II Error in Upper Tail Test of Population Mean with Unknown Variance">Type II Error in Upper Tail Test of Population Mean with Unknown Variance</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/type-2-errors/type-2-errors-two-tailed-test-population-mean-unknown-variance" title="Type II Error in Two-Tailed Test of Population Mean with Unknown Variance">Type II Error in Two-Tailed Test of Population Mean with Unknown Variance</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/inference-about-two-populations" title="Inference About Two Populations">Inference About Two Populations</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/inference-about-two-populations/population-mean-between-two-matched-samples" title="Population Mean Between Two Matched Samples">Population Mean Between Two Matched Samples</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/inference-about-two-populations/population-mean-between-two-independent-samples" title="Population Mean Between Two Independent Samples">Population Mean Between Two Independent Samples</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/inference-about-two-populations/comparison-two-population-proportions" title="Comparison of Two Population Proportions">Comparison of Two Population Proportions</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/goodness-fit" title="Goodness of Fit">Goodness of Fit</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/goodness-fit/multinomial-goodness-fit" title="Multinomial Goodness of Fit">Multinomial Goodness of Fit</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/goodness-fit/chi-squared-test-independence" title="Chi-squared Test of Independence">Chi-squared Test of Independence</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/analysis-variance" title="Analysis of Variance">Analysis of Variance</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/analysis-variance/completely-randomized-design" title="Completely Randomized Design">Completely Randomized Design</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/analysis-variance/randomized-block-design" title="Randomized Block Design">Randomized Block Design</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/analysis-variance/factorial-design" title="Factorial Design">Factorial Design</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/non-parametric-methods" title="Non-parametric Methods">Non-parametric Methods</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/non-parametric-methods/sign-test" title="Sign Test">Sign Test</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/non-parametric-methods/wilcoxon-signed-rank-test" title="Wilcoxon Signed-Rank Test">Wilcoxon Signed-Rank Test</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/non-parametric-methods/mann-whitney-wilcoxon-test" title="Mann-Whitney-Wilcoxon Test">Mann-Whitney-Wilcoxon Test</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/non-parametric-methods/kruskal-wallis-test" title="Kruskal-Wallis Test">Kruskal-Wallis Test</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression" title="Simple Linear Regression">Simple Linear Regression</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/estimated-simple-regression-equation" title="Estimated Simple Regression Equation">Estimated Simple Regression Equation</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/coefficient-determination" title="Coefficient of Determination">Coefficient of Determination</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/significance-test-linear-regression" title="Significance Test for Linear Regression">Significance Test for Linear Regression</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/confidence-interval-linear-regression" title="Confidence Interval for Linear Regression">Confidence Interval for Linear Regression</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/prediction-interval-linear-regression" title="Prediction Interval for Linear Regression">Prediction Interval for Linear Regression</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/residual-plot" title="Residual Plot">Residual Plot</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/standardized-residual" title="Standardized Residual">Standardized Residual</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/simple-linear-regression/normal-probability-plot-residuals" title="Normal Probability Plot of Residuals">Normal Probability Plot of Residuals</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression" title="Multiple Linear Regression">Multiple Linear Regression</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression/estimated-multiple-regression-equation" title="Estimated Multiple Regression Equation">Estimated Multiple Regression Equation</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression/multiple-coefficient-determination" title="Multiple Coefficient of Determination">Multiple Coefficient of Determination</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression/adjusted-coefficient-determination" title="Adjusted Coefficient of Determination">Adjusted Coefficient of Determination</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression/significance-test-mlr" title="Significance Test for MLR">Significance Test for MLR</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression/confidence-interval-mlr" title="Confidence Interval for MLR">Confidence Interval for MLR</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/multiple-linear-regression/prediction-interval-mlr" title="Prediction Interval for MLR">Prediction Interval for MLR</a></li></ul></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/elementary-statistics/logistic-regression" title="Logistic Regression">Logistic Regression</a><ul><li><a href="http://www.r-tutor.com/elementary-statistics/logistic-regression/estimated-logistic-regression-equation" title="Estimated Logistic Regression Equation">Estimated Logistic Regression Equation</a></li><li><a href="http://www.r-tutor.com/elementary-statistics/logistic-regression/significance-test-logistic-regression" title="Significance Test for Logistic Regression">Significance Test for Logistic Regression</a></li></ul></li></ul></li><li class="parent closed"><span class="parent closed"></span><a href="http://www.r-tutor.com/gpu-computing" title="GPU Computing with R">GPU Computing with R</a><ul style="display: none;"><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/clustering/distance-matrix" title="Distance Matrix by GPU">Distance Matrix by GPU</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/clustering/hierarchical-cluster-analysis" title="Hierarchical Cluster Analysis">Hierarchical Cluster Analysis</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/correlation/kendall-rank-coefficient" title="Kendall Rank Coefficient">Kendall Rank Coefficient</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/correlation/kendall-tau-b" title="Significance Test for Kendall&#39;s Tau-b">Significance Test for Kendall's Tau-b</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/svm/rpusvm-1" title="Support Vector Machine with GPU">Support Vector Machine with GPU</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/svm/rpusvm-2" title="Support Vector Machine with GPU, Part II">Support Vector Machine with GPU, Part II</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/gaussian-process/rvbm" title="Bayesian Classification with Gaussian Process">Bayesian Classification with Gaussian Process</a></li><li style="display: none;"><a href="http://www.r-tutor.com/gpu-computing/rbayes/rhierlmc" title="Hierarchical Linear Model">Hierarchical Linear Model</a></li><li class="parent closed" style="display: none;"><span class="parent closed"></span><a href="http://www.r-tutor.com/gpu-computing/rpud-installation" title="Installing GPU Packages">Installing GPU Packages</a><ul><li><a href="http://www.r-tutor.com/gpu-computing/cuda-installation/cuda7.5-fc21" title="Installing CUDA Toolkit 7.5 on Fedora 21 Linux">Installing CUDA Toolkit 7.5 on Fedora 21 Linux</a></li><li><a href="http://www.r-tutor.com/gpu-computing/cuda-installation/cuda7.5-ubuntu" title="Installing CUDA Toolkit 7.5 on Ubuntu 14.04 Linux">Installing CUDA Toolkit 7.5 on Ubuntu 14.04 Linux</a></li></ul></li></ul></li></ul><!--[if IE]></div><![endif]-->  </div>
+</div>
+<div id="block-views-recent_stories-block_2" class="block block-views">
+  <h2>Recent Articles</h2>
+
+  <div class="content">
+    <div class="view view-recent-stories view-id-recent_stories view-display-id-block_2 view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <div class="item-list">
+    <ul>
+          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.r-tutor.com/deep-learning/introduction" class="active">Deep Learning in R</a></span>
+  </div>
+  
+  <div class="views-field-created">
+                <span class="field-content">August 14, 2016</span>
+  </div>
+</li>
+          <li class="views-row views-row-2 views-row-even">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.r-tutor.com/gpu-computing/cuda-installation/cuda7.5-fc21">Installing CUDA Toolkit 7.5 on Fedora 21 Linux</a></span>
+  </div>
+  
+  <div class="views-field-created">
+                <span class="field-content">September 10, 2015</span>
+  </div>
+</li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.r-tutor.com/gpu-computing/cuda-installation/cuda7.5-ubuntu">Installing CUDA Toolkit 7.5 on Ubuntu 14.04 Linux</a></span>
+  </div>
+  
+  <div class="views-field-created">
+                <span class="field-content">September 10, 2015</span>
+  </div>
+</li>
+          <li class="views-row views-row-4 views-row-even views-row-last">  
+  <div class="views-field-title">
+                <span class="field-content"><a href="http://www.r-tutor.com/gpu-computing/rbayes/rhierlmc">Hierarchical Linear Model</a></span>
+  </div>
+  
+  <div class="views-field-created">
+                <span class="field-content">July 22, 2013</span>
+  </div>
+</li>
+      </ul>
+</div>    </div>
+  
+  
+  
+  
+  
+  
+</div>   </div>
+</div>
+		</div>			
+	
+	</div></div>
+	<!-- content-wrap ends here -->		
+
+	<!-- footer starts here -->	
+	<div id="footer-wrap"><div id="footer-content">
+			<p class="l">
+			Copyright © 2009 - 2018 <a href="http://www.r-tutor.com/content/author">Chi Yau</a> All Rights Reserved<br>
+			Theme design by <a href="http://www.styleshout.com/" target="_blank">styleshout</a>
+            Fractal graphics by <a href="http://zyzstar.kosoru.com/?fractals" target="_blank">zyzstar</a>
+            Adaptation by <a href="http://www.r-tutor.com/content/author">Chi Yau</a>
+			</p>
+
+		<br class="clear">
+	</div></div>
+	<!-- footer ends here -->
+
+  <script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var _gaq = _gaq || [];_gaq.push(["_setAccount", "UA-9827360-1"]);_gaq.push(["_trackPageview"]);(function() {var ga = document.createElement("script");ga.type = "text/javascript";ga.async = true;ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(ga, s);})();
+//--><!]]>
+</script>
+
+
+</body></html>

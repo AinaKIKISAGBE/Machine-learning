@@ -1,0 +1,452 @@
+---
+title: "Forêt de régression logistique"
+output:
+  html_document: default
+  html_notebook: default
+  pdf_document: default
+---
+
+# Package
+```{r}
+library(dplyr)
+library(car)
+library(ROCR)
+library(SDMTools)
+library(ggplot2)
+```
+
+# Données
+```{r}
+appren <- read.csv(file="Base_TRAIN.csv",stringsAsFactors=FALSE) %>% select(-Selected,-echantillon)
+test <- read.csv(file="Base_TEST.csv",stringsAsFactors=FALSE) %>% select(-Selected,-echantillon)
+```
+
+# Choix des variables
+```{r}
+appren <- appren[,c(31:71)]
+appren[] <- lapply(appren,factor)
+test <- test[,c(31:71)]
+test[] <- lapply(test,factor)
+```
+
+# Régression logistique
+
+## Test de présence de multicolinéarité
+```{r}
+garde <- c(1,3,4,6,8,10,12,13,15,16,17,19,20,22,23,24,26,27,29,30,31,32,34,35,36,38,39,40)
+
+modele <- glm(formula=Ynum~.,data=appren[,garde],family=binomial(link=logit))
+
+any(vif(modele)>5)
+any(vif(modele)>2)
+
+rm(modele)
+```
+Présence de multicolinéarité faible entre certaines variables
+
+# Choix des variables selon les méthodes forward et backward (1 avec aic et 2 avec pvalue)
+
+## Méthode backward avec pvalue
+```{r}
+g1 <- garde
+p <- 1
+while (p>0.05){
+  modele <- glm(formula=Ynum~.,data=appren[,g1],family=binomial(link=logit))
+  sum <- summary(modele)$coefficient
+  p <- sum[which.max(sum[,4]),4]
+  name <- rownames(sum)[which.max(sum[,4])]
+  i <- which(names(appren)==substr(name,1,nchar(name)-1))
+  if (p>0.05){
+    g1 <- setdiff(g1,i)
+  }
+}
+keep1 <- g1
+rm(sum,g1,i,name,p,modele)
+```
+
+## Méthode backward avec AIC
+```{r}
+g2 <- garde[-1]
+t <- TRUE
+while (t){
+  modele <- glm(formula=Ynum~.,data=appren[,c(1,g2)],family=binomial(link=logit))
+  aic <- summary(modele)$aic
+  tab <- data.frame(var=g2,aic=NA)
+  for (i in g2){
+    modele <- glm(formula=Ynum~.,data=appren[,c(1,setdiff(g2,i))],family=binomial(link=logit))
+    tab$aic[tab$var==i] <- summary(modele)$aic
+  }
+  if (tab$aic[which.min(tab$aic)]<aic){
+    j <- tab$var[which.min(tab$aic)]
+    g2 <- setdiff(g2,j)
+    aic <- tab$aic[which.min(tab$aic)]
+  } else {
+    t <- FALSE
+  }
+}
+keep2 <- c(1,g2)
+rm(aic,g2,i,j,t,modele)
+```
+
+## Méthode forward avec pvalue
+```{r}
+g3 <- garde[-1]
+k1 <- c(1)
+tab <- data.frame(var=g3,pvalue=0)
+while (any(tab$pvalue<0.05)){
+  tab <- data.frame(var=g3,pvalue=NA)
+  for (i in g3){
+    modele <- glm(formula=Ynum~.,data=appren[,c(k1,i)],family=binomial(link=logit))
+    tab$pvalue[tab$var==i] <- summary(modele)$coefficient[-c(1:length(k1)),4]
+  }
+  if (tab$pvalue[which.min(tab$pvalue)]<0.05){
+    j <- tab$var[which.min(tab$pvalue)]
+    k1 <- c(k1,j)
+    g3 <- setdiff(g3,j)
+  }
+}
+keep3 <- k1
+rm(tab,g3,i,j,k1,modele)
+```
+
+## Méthode forward avec aic
+```{r}
+g4 <- garde[-1]
+k2 <- c(1)
+tab <- data.frame(var=g4,aic=NA)
+for (i in g4){
+  modele <- glm(formula=Ynum~.,data=appren[,c(k2,i)],family=binomial(link=logit))
+  tab$aic[tab$var==i] <- summary(modele)$aic
+}
+j <- tab$var[which.min(tab$aic)]
+k2 <- c(k2,j)
+g4 <- setdiff(g4,j)
+aic <- tab$aic[which.min(tab$aic)]
+t <- TRUE
+while (t){
+  tab <- data.frame(var=g4,aic=NA)
+  for (i in g4){
+    modele <- glm(formula=Ynum~.,data=appren[,c(k2,i)],family=binomial(link=logit))
+    tab$aic[tab$var==i] <- summary(modele)$aic
+  }
+  if (tab$aic[which.min(tab$aic)]<aic){
+    j <- tab$var[which.min(tab$aic)]
+    k2 <- c(k2,j)
+    g4 <- setdiff(g4,j)
+    aic <- tab$aic[which.min(tab$aic)]
+  } else {
+    t <- FALSE
+  }
+}
+keep4 <- k2
+rm(tab,aic,g4,i,j,k2,modele,t)
+```
+
+## Test l'égalité des variables choisies
+```{r}
+length(keep1) == length(keep2)
+length(keep1) == length(keep3)
+all(keep1 %in% keep3)&all(keep3 %in% keep1) # même modèle pour keep1 et keep3 => pvalue
+length(keep1) == length(keep4)
+length(keep2) == length(keep4)
+all(keep2 %in% keep4)&all(keep4 %in% keep2) # même modèle pour keep2 et keep4 => AIC
+rm(keep3,keep4)
+```
+
+## Test de présence de multicolinéarité et sugnificativité des coefficients
+```{r}
+cat("Modèle pvalue:")
+modele1 <- glm(formula=Ynum~.,data=appren[,keep1],family=binomial(link=logit))
+summary(modele1)
+vif(modele1)[vif(modele1)>2]
+
+cat("Modèle AIC:")
+modele2 <- glm(formula=Ynum~.,data=appren[,keep2],family=binomial(link=logit))
+summary(modele2)
+vif(modele2)[vif(modele2)>2]
+```
+Les coefficients sont tous significatifs (au moins Ã  10%) et il existe encore de la multicolinéarité faible dans les modèles. Les modèles se ressemblent en terme d'AIC.
+
+
+# Mesure de la prédiction des modèles
+```{r}
+cat("Modèle pvalue:\n")
+proba1 <- predict(modele1,newdata=test[,keep1],type="response")
+pred1 <- prediction(proba1,test[,"Ynum"])
+performance1 <- performance(pred1,measure="auc",x.measure="cutoff")
+cat("AUC de la régression logistique: ",performance1@y.values[[1]],"\nMatrice de confusion en pourcentage:\n")
+confusion1 <- as.table(confusion.matrix(test[,"Ynum"],proba1,0.5))
+somme <- sum(confusion1)
+for (i in 1:4){
+  confusion1[i] <- round(confusion1[i]/somme*100,2)
+}
+confusion1
+
+cat("\nModèle pvalue:\n")
+proba2 <- predict(modele2,newdata=test[,keep2],type="response")
+pred2 <- prediction(proba2,test[,"Ynum"])
+performance2 <- performance(pred2,measure="auc",x.measure="cutoff")
+cat("AUC de la régression logistique: ",performance2@y.values[[1]],"\nMatrice de confusion en pourcentage: \n")
+confusion2 <- as.table(confusion.matrix(test[,"Ynum"],proba2,0.5))
+somme <- sum(confusion2)
+for (i in 1:4){
+  confusion2[i] <- round(confusion2[i]/somme*100,2)
+}
+confusion2
+
+rm(i,somme)
+```
+
+# Bagging et forêt de régression logistique
+
+## Création de la fonction bagging
+```{r}
+bagging <- function(app,t,vapp,vt,nr,id=na,ni=NA){
+  
+  if (is.na(ni)){ni=round(0.33*length(app),0)}
+  if (length(id)!=length(app)){id=1:length(app)}
+  # return(list(app=app,t=t,vapp=vapp,vt=vt,nr=nr,ni=ni))
+  probatest <- matrix(NA,ncol=nr,nrow=length(t))
+  regtest <- matrix(NA,ncol=5,nrow=nr)
+  regapp <- matrix(NA,ncol=5,nrow=nr)
+  # 4 premieres colonne = matrice de confusion (pred puis obs), 5eme = auc
+  colnames(regtest)=colnames(regapp)=c("conf00","conf10","conf01","conf11","auc")
+  indapp <- matrix(rep(0,length(app)),ncol=1,nrow=length(app))
+  colnames(indapp) <- "apparition"
+  rownames(indapp) <- id
+
+  app <- cbind(app,vapp)
+
+  t <- cbind(t,vt)
+
+  modele <- glm(data=app,formula=as.formula(paste(names(app)[1],"~",paste(names(app)[-1],collapse=" + "),collapse=" ")),family=binomial(link=logit))
+  regcoeff <- matrix(NA,ncol=0,nrow=length(names(modele$coefficients)))
+  rownames(regcoeff) <- names(modele$coefficients)
+
+  for (i in 1:nr){
+
+    # echantillonnage individus sur la table apprentissage (refaire tant qu'une variable ne contient qu'une unique valeur)
+    repeat{
+      ind <- sample(1:nrow(app),ni)
+      tabapp <- app[ind,]
+      var <- which(sapply(tabapp,function(col){length(unique(col))})==1)
+      if (length(var)==0){break}
+    }
+    tabt2 <- anti_join(app,tabapp,by=names(tabapp))
+    # print(ind)
+    for (j in ind){
+      indapp[j,1] <- indapp[j,1]+1
+    }
+
+    # regression logistique sur la table apprentissage echantillonnee
+    modele <- glm(data=tabapp,formula=paste(names(tabapp)[1],"~",paste(names(tabapp)[-1],collapse=" + "),collapse=" "),family=binomial(link=logit))
+    regcoeff <- cbind(regcoeff,as.matrix(modele$coefficients)[match(rownames(regcoeff),rownames(as.matrix(modele$coefficients)))])
+    
+    # prevision du reste de la table apprentissage
+    proba <- predict(modele,newdata=tabt2,type="response")
+    pred <- prediction(proba,tabt2[,1])
+    performance <- performance(pred,measure="auc",x.measure="cutoff")
+    confusion <- as.table(confusion.matrix(tabt2[,1],proba,0.5))
+    somme <- sum(confusion)
+    for (j in 1:4){
+      regapp[i,j] <- round(confusion[j]/somme*100,2)
+    }
+    regapp[i,5] <- performance@y.values[[1]]
+
+    # prevision de la base test
+    proba <- predict(modele,newdata=t,type="response")
+    probatest[,i] <- proba
+    pred <- prediction(proba,t[,1])
+    performance <- performance(pred,measure="auc",x.measure="cutoff")
+    confusion <- as.table(confusion.matrix(t[,1],proba,0.5))
+    somme <- sum(confusion)
+    for (j in 1:4){
+      regtest[i,j] <- round(confusion[j]/somme*100,2)
+    }
+    regtest[i,5] <- performance@y.values[[1]]
+
+  }
+
+  regcoeff <- cbind(regcoeff,apply(regcoeff,1,mean,na.rm=TRUE))
+  colnames(regcoeff) <- c(paste("regression_",1:nr,sep=""),"moyenne")
+  proba <- apply(probatest,1,mean)
+  pred <- prediction(proba,t[,1])
+  performance <- performance(pred,measure="auc",x.measure="cutoff")
+  confusion <- as.table(confusion.matrix(t[,1],proba,0.5))
+  somme <- sum(confusion)
+  for (j in 1:4){
+    confusion[j] <- round(confusion[j]/somme*100,2)
+  }
+
+  return(list(auc=performance@y.values[[1]],confusion=confusion,individu=indapp,coefficients=regcoeff,regression_test=regtest,regression_apprentissage=regapp,n_individu=ni))
+}
+```
+
+## Création de la fonction forêt
+```{r}
+foret <- function(app,t,vapp,vt,nr,ni=NA,nv=NA,id=NA){
+  
+  if (is.na(ni)){ni=round(0.33*length(app),0)}
+  if (is.na(nv)){nv=round(0.33*ncol(vapp),0)}
+  if (length(id)!=length(app)){id=1:length(app)}
+  probatest <- matrix(NA,ncol=nr,nrow=length(t))
+  regtest <- matrix(NA,ncol=5,nrow=nr)
+  regapp <- matrix(NA,ncol=5,nrow=nr)
+  # 4 premieres colonne = matrice de confusion (pred puis obs), 5eme = auc
+  colnames(regtest)=colnames(regapp)=c("conf00","conf10","conf01","conf11","auc")
+  indapp <- matrix(rep(0,length(app)),ncol=1,nrow=length(app))
+  colnames(indapp) <- "apparition"
+  rownames(indapp) <- id
+  varapp <- matrix(rep(0,ncol(vapp)),ncol=1,nrow=ncol(vapp))
+  colnames(varapp) <- "apparition"
+  rownames(varapp) <- names(vapp)
+  
+  app <- cbind.data.frame(app,vapp)
+  t <- cbind.data.frame(t,vt)
+  
+  modele <- glm(data=app,formula=paste(names(app)[1],"~",paste(names(app)[-1],collapse=" + "),collapse=" "),family=binomial(link=logit))
+  regcoeff <- matrix(NA,ncol=0,nrow=length(names(modele$coefficients)))
+  rownames(regcoeff) <- names(modele$coefficients)
+  
+  for (i in 1:nr){
+    
+    # echantillonnage variables
+    var <- sample(2:ncol(app),nv)
+    for (j in var){
+      varapp[j-1,1] <- varapp[j-1,1]+1
+    }
+  
+    # echantillonnage individus sur la table apprentissage (refaire tant qu'une des variables ne contient qu'une unique valeur)
+    repeat{
+      ind <- sample(1:nrow(app),ni)
+      tabapp <- app[ind,c(1,var)]
+      v <- which(sapply(tabapp,function(col){length(unique(col))})==1)
+      if (length(v)==0){break}
+    }
+    tabt2 <- anti_join(app[,c(1,var)],tabapp,by=names(tabapp))
+    for (j in ind){
+      indapp[j,1] <- indapp[j,1]+1
+    }
+    
+    # regression logistique sur la table apprentissage echantillonnee
+    modele <- glm(data=tabapp,formula=paste(names(tabapp)[1],"~",paste(names(tabapp)[-1],collapse=" + "),collapse=" "),family=binomial(link=logit))
+    regcoeff <- cbind(regcoeff,as.matrix(modele$coefficients)[match(rownames(regcoeff), rownames(as.matrix(modele$coefficients)))])
+    
+    # prevision du reste de la table apprentissage
+    proba <- predict(modele,newdata=tabt2,type="response")
+    pred <<- prediction(proba,tabt2[,1])
+    performance <- performance(pred,measure="auc",x.measure="cutoff")
+    confusion <- as.table(confusion.matrix(tabt2[,1],proba,0.5))
+    somme <- sum(confusion)
+    for (j in 1:4){
+      regapp[i,j] <- round(confusion[j]/somme*100,2)
+    }
+    regapp[i,5] <- performance@y.values[[1]]
+    
+    # prevision de la base test
+    proba <- predict(modele,newdata=t[,c(1,var)],type="response")
+    probatest[,i] <- proba
+    pred <- prediction(proba,t[,1])
+    performance <- performance(pred,measure="auc",x.measure="cutoff")
+    confusion <- as.table(confusion.matrix(t[,1],proba,0.5))
+    somme <- sum(confusion)
+    for (j in 1:4){
+      regtest[i,j] <- round(confusion[j]/somme*100,2)
+    }
+    regtest[i,5] <- performance@y.values[[1]]
+    
+  }
+  
+  regcoeff <- cbind(regcoeff,apply(regcoeff,1,mean,na.rm=TRUE))
+  colnames(regcoeff) <- c(paste("regression_",1:nr,sep=""),"moyenne")
+  proba <- apply(probatest,1,mean)
+  pred <- prediction(proba,t[,1])
+  performance <- performance(pred,measure="auc",x.measure="cutoff")
+  confusion <- as.table(confusion.matrix(t[,1],proba,0.5))
+  somme <- sum(confusion)
+  for (j in 1:4){
+    confusion[j] <- round(confusion[j]/somme*100,2)
+  }
+  
+  return(list(auc=performance@y.values[[1]],confusion=confusion,individu=indapp,variables=varapp,coefficients=regcoeff,regression_test=regtest,regression_apprentissage=regapp,n_individu=ni,n_variable=nv))
+}
+```
+
+## Utilisation des fonctions
+```{r}
+b200 <- bagging(app=appren$Ynum,vapp=appren[,keep1[-1]],t=test$Ynum,vt=test[,keep1[-1]],nr=200,id=appren$cle)
+b300 <- bagging(app=appren$Ynum,vapp=appren[,keep1[-1]],t=test$Ynum,vt=test[,keep1[-1]],nr=300,id=appren$cle)
+b500 <- bagging(app=appren$Ynum,vapp=appren[,keep1[-1]],t=test$Ynum,vt=test[,keep1[-1]],nr=500,id=appren$cle)
+f200 <- foret(app=appren$Ynum,vapp=appren[,garde[-1]],t=test$Ynum,vt=test[,garde[-1]],nr=200,id=appren$cle)
+f300 <- foret(app=appren$Ynum,vapp=appren[,garde[-1]],t=test$Ynum,vt=test[,garde[-1]],nr=300,id=appren$cle)
+f500 <- foret(app=appren$Ynum,vapp=appren[,garde[-1]],t=test$Ynum,vt=test[,garde[-1]],nr=500,id=appren$cle)
+```
+
+# Comparaison des coefficients des variables selon les méthodes utilisées et exportation
+```{r}
+tableau <- data.frame(variable=rownames(f200$coefficients),
+                      foret200=f200$coefficients[,ncol(f200$coefficients)],
+                      foret300=f300$coefficients[,ncol(f300$coefficients)],
+                      foret500=f500$coefficients[,ncol(f500$coefficients)])
+bagging200 <- data.frame(variable=rownames(b200$coefficients),bagging200=b200$coefficients[,ncol(b200$coefficients)])
+bagging300 <- data.frame(variable=rownames(b300$coefficients),bagging300=b300$coefficients[,ncol(b300$coefficients)])
+bagging500 <- data.frame(variable=rownames(b500$coefficients),bagging500=b500$coefficients[,ncol(b500$coefficients)])
+base <- data.frame(variable=names(modele1$coefficients),base=modele1$coefficients)
+tableau <- merge(tableau,bagging200,all=TRUE) %>% rename()
+tableau <- merge(tableau,bagging300,all=TRUE)
+tableau <- merge(tableau,bagging500,all=TRUE)
+tableau <- merge(tableau,base,all=TRUE)
+
+# Arrondir les valeurs
+tableau[,-1] <- round(tableau[,-1],3)
+
+rm(bagging200,bagging300,bagging500,base)
+write.csv2(tableau,file="coefficients.csv",row.names=FALSE)
+```
+
+# Comparaison des prédictions selon les méthodes utilisées
+```{r}
+cat("Régression linéaire:\n")
+print(confusion1)
+print(performance1@y.values[[1]])
+
+cat("Bagging 200 régressions:\n")
+print(b200$confusion)
+print(b200$auc)
+
+cat("Bagging 300 régressions:\n")
+print(b300$confusion)
+print(b300$auc)
+
+cat("Bagging 500 régressions:\n")
+print(b500$confusion)
+print(b500$auc)
+
+cat("Forêt 200 régressions:\n")
+print(f200$confusion)
+print(f200$auc)
+
+cat("Forêt 300 régressions:\n")
+print(f300$confusion)
+print(f300$auc)
+
+cat("Forêt 500 régressions:\n")
+print(f500$confusion)
+print(f500$auc)
+```
+
+# Représentation des auc prédit pour toutes les régressions (sur les restes de la base apprentissage et sur la base test)
+```{r}
+ggplot(data=as.data.frame(b200$regression_test)) + geom_density(fill="blue",alpha=.5,aes(x=auc)) + geom_vline(aes(xintercept=performance1@y.values[[1]])) + theme_classic() + ggtitle("Bagging 200 régressions")
+
+ggplot(data=as.data.frame(b300$regression_test),aes(x=auc)) + geom_density(fill="blue",alpha=.5) + geom_vline(aes(xintercept=performance1@y.values[[1]])) + theme_classic() + ggtitle("Bagging 300 régressions")
+
+ggplot(data=as.data.frame(b500$regression_test),aes(x=auc)) + geom_density(fill="blue",alpha=.5) + geom_vline(aes(xintercept=performance1@y.values[[1]])) + theme_classic() + ggtitle("Bagging 500 régressions")
+
+ggplot(data=as.data.frame(f200$regression_test),aes(x=auc)) + geom_density(fill="blue",alpha=.5) + geom_vline(aes(xintercept=performance1@y.values[[1]])) + theme_classic() + ggtitle("Forêt 200 régressions")
+
+ggplot(data=as.data.frame(f300$regression_test),aes(x=auc)) + geom_density(fill="blue",alpha=.5) + geom_vline(aes(xintercept=performance1@y.values[[1]])) + theme_classic() + ggtitle("Forêt 300 régressions")
+
+ggplot(data=as.data.frame(f500$regression_test),aes(x=auc)) + geom_density(fill="blue",alpha=.5) + geom_vline(aes(xintercept=performance1@y.values[[1]])) + theme_classic() + ggtitle("Forêt 500 régressions")
+```
+

@@ -1,0 +1,2306 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.manning.com/books/deep-learning-with-r -->
+<html lang="en" class="no-js"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+            
+
+            
+
+            <meta property="og:title" content="Deep Learning with R">
+            <meta property="og:site_name" content="Manning Publications">
+            <meta property="og:locale" content="en_US">
+
+            <!-- Twitter metadata -->
+            <meta name="twitter:title" content="Deep Learning with R">
+            
+                <meta name="twitter:description" content="The clearest explanation of deep learning I have come across...it was a joy to read.">
+                <meta property="og:description" content="The clearest explanation of deep learning I have come across...it was a joy to read.">
+            
+            
+                <meta property="og:image" content="https://images.manning.com/720/960/resize/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <meta property="og:image:secure_url" content="https://images.manning.com/720/960/resize/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <meta property="og:image:type" content="image/png">
+                <meta property="og:image:alt" content="The cover for Deep Learning with R">
+
+                <meta name="twitter:image" content="https://images.manning.com/720/960/resize/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+
+                <meta name="msapplication-TileColor" content="#343434">
+                <meta name="msapplication-square70x70logo" content="https://images.manning.com/70/70/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <meta name="msapplication-square150x150logo" content="https://images.manning.com/150/150/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <meta name="msapplication-wide310x150logo" content="https://images.manning.com/310/150/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <meta name="msapplication-square310x310logo" content="https://images.manning.com/310/310/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+
+                <link rel="apple-touch-icon" href="https://images.manning.com/152/152/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="57x57" href="https://images.manning.com/57/57/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="60x60" href="https://images.manning.com/60/60/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="72x72" href="https://images.manning.com/72/72/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="76x76" href="https://images.manning.com/76/76/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="114x114" href="https://images.manning.com/114/114/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="120x120" href="https://images.manning.com/120/120/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="144x144" href="https://images.manning.com/144/144/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+                <link rel="apple-touch-icon" sizes="152x152" href="https://images.manning.com/152/152/crop/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png">
+            
+        
+    <!-- Google Tag Manager -->
+    <script src="./Manning _ Deep Learning with R_files/getIds" type="text/javascript" async=""></script><script id="ltkSDK" src="./Manning _ Deep Learning with R_files/script.js.téléchargement"></script><script type="text/javascript" async="" src="./Manning _ Deep Learning with R_files/ec.js.téléchargement"></script><script src="./Manning _ Deep Learning with R_files/1940497162877014" async=""></script><script async="" src="./Manning _ Deep Learning with R_files/fbevents.js.téléchargement"></script><script type="text/javascript" async="" src="./Manning _ Deep Learning with R_files/analytics.js.téléchargement"></script><script async="" src="./Manning _ Deep Learning with R_files/gtm.js.téléchargement"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-59QHSR4');</script>
+    <!-- End Google Tag Manager -->
+    
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <link rel="shortcut icon" href="https://www.manning.com/assets/favicon/favicon-06c8d32da14f50950f2c6422e9af1731.png" type="image/png">
+
+    <meta name="application-name" content="Deep Learning with R">
+    <meta name="apple-mobile-web-app-title" content="Deep Learning with R">
+    <link href="./Manning _ Deep Learning with R_files/css" rel="stylesheet" type="text/css">
+    <title>Manning | Deep Learning with R</title>
+    <link rel="stylesheet" href="./Manning _ Deep Learning with R_files/application-a73dd79d521919702d5db47188309dbf.css">
+    
+    
+    <script type="text/javascript">
+        document.write(unescape("%3Cscript id='pap_x2s6df8d' src='" + (("https:" == document.location.protocol) ? "https://" : "http://") +
+                "manning.postaffiliatepro.com/scripts/trackjs.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script id="pap_x2s6df8d" src="./Manning _ Deep Learning with R_files/trackjs.js.téléchargement" type="text/javascript"></script><script type="text/javascript" src="./Manning _ Deep Learning with R_files/track.php"></script>
+    <script type="text/javascript">
+        PostAffTracker.setAccountId('default1');
+        try {
+            PostAffTracker.track();
+        } catch (err) { }
+    </script>
+    <script type="text/javascript">
+
+        var manningSearchLocations = {
+            serverUrl: "https:\u002f\u002fwww.manning.com",
+            imagesUrl: "https:\u002f\u002fimages.manning.com",
+            liveVideoServerUrl: "https:\u002f\u002flivevideo.manning.com",
+            liveVideoBackendUrl: "https:\u002f\u002flivevideo-be.manning.com",
+            liveBookServerUrl: "https:\u002f\u002flivebook.manning.com",
+            liveBookBucketUrl: "https://dpzbhybb2pdcj.cloudfront.net"
+        };
+    
+</script>
+
+    <!-- Facebook Pixel Code -->
+    <script type="text/javascript">
+
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window,document,'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1940497162877014');
+        fbq('track', 'PageView');
+    
+</script>
+
+    <noscript>
+        &lt;img height="1" width="1"
+             src="https://www.facebook.com/tr?id=1940497162877014&amp;ev=PageView&amp;noscript=1"/&gt;
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+<style type="text/css">.tabs-container .tabs-title-container{width:100%}.tabs-container .tabs-title-container .tab-title-container{cursor:pointer;display:inline-block;box-sizing:content-box;border-bottom-style:solid;border-width:5px;margin-top:10px;text-align:center;height:22px;font-size:15px;user-select:none;border-color:#40464c;line-height:1}.tabs-container .tabs-title-container .tab-title-container.selected{border-color:#0e5ba9}</style><style type="text/css">.loading-results-container{min-height:100%;width:100%;text-align:center;display:flex;justify-content:center;align-items:center}.loading-results-container .loading-icon{font-size:60px}</style><style type="text/css">#demo-container .search-demo-route-link{display:inline-block;margin:0 5px;padding:0 2px}#demo-container .search-demo-route-link.selected{background-color:blue;color:#fff}.search-tabs{background-color:#222;color:#fff}.search-tabs,.search-wrapper{font-family:Lato,Arial,Helvetica Neue,Helvetica,Roboto,sans-serif!important}.search-wrapper .search-close{line-height:30px;height:30px;text-align:center;text-decoration:none;display:block;background-color:#3c67a2;color:#fff}.search-wrapper .search-close:hover{background-color:#2e4f7d}.search-wrapper .search-close:active{background-color:#203858}.search-toolbar{border:1px solid rgba(0,0,0,.15);border-radius:3px;margin:5px;position:relative;background:#fff}.search-toolbar .search-box{outline:none;text-indent:5px;color:#000;height:2rem;border:0;font-size:12px;width:100%;top:0;border-radius:3px;padding-right:160px}.search-toolbar .clear-search-button{color:#000;position:absolute;cursor:pointer;right:150px;top:8px;line-height:1}.search-toolbar .clear-search-button.hidden{display:none}.search-toolbar.no-search-options .search-box{padding-right:60px}.search-toolbar.no-search-options .clear-search-button{right:55px}.search-toolbar .search-box::-ms-clear{display:none}.search-toolbar .search-type{display:inline-block;background-color:#fff;border:none;border-left:1px solid #ccc;width:100px;margin:0;height:2rem;font-size:13px;margin-right:2px;padding:0 .5rem;position:absolute;right:45px;top:0;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+);background-position:100%;background-repeat:no-repeat;color:rgba(0,0,0,.75);line-height:normal;border-radius:0;-webkit-appearance:none!important}.search-toolbar .search-button{background-color:#3c67a2!important;color:#fff!important;box-shadow:none!important;border:none!important;margin:-1px -1px 0 0!important;height:18px;border-bottom-left-radius:0!important;border-top-left-radius:0!important;position:absolute;right:0;top:0;border-radius:3px;padding:8px 15px;font-size:14px;font-weight:400}.search-toolbar .search-button:hover{box-shadow:none!important;background-color:#4b71a7!important;top:0!important}.search-toolbar .search-button:active{box-shadow:none!important;background-color:#023d74!important;top:0!important}.search-container{background-color:#222;font-family:Lato,Arial,Helvetica Neue,Helvetica,Roboto,sans-serif!important;padding:5px;position:relative;overflow:hidden}.search-container .search-error-container{min-height:200px;width:100%;padding:20px;color:red}.search-container .search-notifications-container{position:absolute;bottom:15px;left:15px;padding:10px;background-color:gray;border-radius:3px;font-size:12px;display:none}.search-container .search-tree-toolbar-container{margin:10px;user-select:none;-moz-user-select:none;-webkit-user-select:none;font-size:75%;color:#b3b3b3}.search-container .search-tree-toolbar-container input{margin:0;margin-right:5px}.search-container .search-tree-toolbar-container label{color:#b3b3b3;cursor:pointer}.search-container .search-tree-toolbar-container .legend-item{display:inline-block;margin-right:5px}.search-container .search-tree-toolbar-container .legend-item .legend-node-description{cursor:default}.search-container .search-tree-toolbar-container .legend-item .legend-node{display:inline-block;margin-right:2px;width:12px;height:12px;background-color:#fff}.search-container .search-tree-toolbar-container .legend-item .legend-node.no-results{background-color:#7b9ac5}.search-container .search-tree-toolbar-container .legend-item .legend-node.has-results{background-color:#3c67a2}.search-container .search-tree-toolbar-container .legend-item .legend-node.has-important-results{background-color:orange;fill:orange}.search-container .search-tree-column-labels-container{overflow:hidden;position:relative;width:100%;margin-bottom:5px}.search-container .search-tree-column-labels-container .search-tree-column-labels-background{height:25px;background-color:#5d656d;min-width:100%}.search-container .search-label-container{opacity:0;transition:opacity .75s ease-in-out;position:absolute;top:0;font:16px Lato;color:#fff;display:inline-block}.search-container .search-label-container.visible{opacity:1}.search-container .search-results-container{overflow:auto;position:relative}.search-container .search-results-container .seach-product-title i,.search-container .search-results-container .search-product-item-description i,.search-container .search-results-container .search-sub-head-item i{font-family:inherit;font-style:italic}.search-container .search-results-container .search-result-items-container{padding:10px}.search-container .search-results-container a img{border:none}.search-container .search-results-container .search-result{text-decoration:underline}.search-container .search-results-container img{display:inline-block;vertical-align:middle;max-width:100%;height:auto}.search-container .search-results-container .search-element-results-container{padding:5px;font-size:14px}.search-container .search-results-container .search-element-results-container .search-element-results-title{color:#fff;font-size:16px}.search-container .search-results-container .search-product-list-item-container{color:#fff;padding:8px 0;padding-bottom:15px;clear:both}.search-container .search-results-container .search-product-list-item-container a{color:#fff;outline:none}.search-container .search-results-container .search-product-list-item-container .search-cover-container{width:20%;float:left;max-width:140px;margin-right:25px;margin-bottom:10px;text-align:center}.search-container .search-results-container .search-product-list-item-container .search-product-look-inside-link{font-size:13px;background-color:#407fbf;border-color:#369;width:100%;display:inline-block;text-decoration:none;min-height:30px;line-height:30px;margin-top:10px}.search-container .search-results-container .search-product-list-item-container .search-product-look-inside-link:hover{background-color:#369}.search-container .search-results-container .search-product-list-item-container .search-product-look-inside-link:active{background-color:#264c73}@media screen and (max-width:550px){.search-container .search-results-container .search-product-list-item-container .search-product-look-inside-link i{display:none}}@media screen and (max-width:380px){.search-container .search-results-container .search-product-list-item-container .search-product-look-inside-link{min-height:auto;line-height:normal;padding:3px 0}}.search-container .search-results-container .search-product-list-item-container .toggle-results-link{float:right;margin-left:10px;cursor:pointer;user-select:none;-moz-user-select:none;font-size:14px;background-color:#3c67a2;padding:5px;min-width:110px;text-align:center;margin-bottom:10px;text-decoration:none}.search-container .search-results-container .search-product-list-item-container .toggle-results-link:hover{background-color:#2e4f7d}.search-container .search-results-container .search-product-list-item-container .toggle-results-link:active{background-color:#203858}.search-container .search-results-container .search-product-list-item-container .search-product-title{font-family:Lato;font-weight:400;font-size:19px}.search-container .search-results-container .search-product-list-item-container .search-sub-head-item{font-size:12px;display:inline-block;margin-right:15px}.search-container .search-results-container .search-product-list-item-container .search-sub-head-item.active{color:#3c67a2}.search-container .search-results-container .search-product-list-item-container .search-product-item-description{font-size:13px;margin-top:5px;overflow:hidden}.search-container .search-results-container .search-product-list-item-container .search-product-item-description i{font-family:inherit;font-style:italic}.search-container .search-results-container .search-product-list-item-container .search-product-item-description p{font-size:13px;margin-bottom:5px}.search-container .search-results-container .search-product-list-item-container label{font-size:13px;color:#535353;cursor:auto;font-weight:bolder}.search-container .search-results-container .search-product-list-item-container .toggle-results{color:#fff;text-decoration:underline;cursor:pointer;float:right;margin-right:5px;margin-bottom:5px;user-select:none;-moz-user-select:none;font-size:14px}.search-container .search-results-container .search-product-list-item-container .results-collapse-container{font-size:13px;overflow:auto!important}@media screen and (max-width:500px){.search-container .search-results-container .search-product-list-item-container .results-collapse-container{clear:both}}.search-container .search-results-container .search-product-item-results-container{margin-top:5px}.search-container .search-results-container .search-result-link{color:#fff;display:block;padding:10px;text-decoration:none}.search-container .search-results-container .search-result-link a{color:#fff!important}.search-container .search-results-container .search-result-link p{margin-bottom:0;font-size:inherit}.search-container .search-results-container .search-result-link i{font-family:inherit;font-style:italic}.search-container .search-results-container .search-result-link:nth-child(2n){background-color:#5d656d}.search-container .search-results-container .search-result-link:nth-child(odd){background-color:#6e747b}.search-container .search-results-container .search-result-link:hover{background-color:#588cde}.search-container .search-results-container .instruction-label{fill:#b3b3b3;font-size:12px}.search-container .search-results-container::-webkit-scrollbar{-webkit-appearance:none;width:7px;height:7px}.search-container .search-results-container::-webkit-scrollbar-thumb{border-radius:4px;background-color:gray;-webkit-box-shadow:0 0 1px hsla(0,0%,100%,.8)}.search-container .search-results-container .legend-label{fill:#b3b3b3;font-size:14px;text-decoration:underline;cursor:pointer}.search-container .search-results-container .legend-group{opacity:0;transition:opacity .3s}.search-container .search-results-container .legend-group.shown{opacity:1}.search-container .search-results-container .search-tree-svg-wrapper{position:relative;user-select:none;-moz-user-select:none}.search-container .search-results-container .search-tree-svg-wrapper .fa{font:normal normal normal 14px/1 FontAwesome}.search-container .search-results-container .toggle-empty-items-checkbox-container{cursor:pointer}.search-container .search-results-container .toggle-empty-items-checkbox-container .check-icon{fill:#fff;display:none}.search-container .search-results-container .toggle-empty-items-checkbox-container.is-checked .check-icon{display:block}.search-container .search-results-container .legend-node.no-results{fill:#7b9ac5}.search-container .search-results-container .legend-node.contains-results{fill:#3c67a2}.search-container .search-results-container .legend-node.contains-important-results{fill:orange}.search-container .search-results-container .node{cursor:pointer}.search-container .search-results-container .node .product-cover-rectangle,.search-container .search-results-container .node .product-item-index-rectangle,.search-container .search-results-container .node .subtree-label{fill:#3c67a2}.search-container .search-results-container .node rect.background-rectangle{fill:transparent}.search-container .search-results-container .node text{font:13px Lato}.search-container .search-results-container .node.contains-results{fill:#fff}.search-container .search-results-container .node.contains-results .book-icon:hover,.search-container .search-results-container .node.contains-results .product-item-index-container:hover{filter:url(#svgGlow);text-decoration:underline;cursor:pointer}.search-container .search-results-container .node[data-showing-results] text{text-decoration:underline;font-weight:bolder}.search-container .search-results-container .node[data-showing-results].contains-results .book-icon .product-cover-rectangle,.search-container .search-results-container .node[data-showing-results].contains-results .product-item-index-container rect{stroke:#203858;stroke-width:2px}.search-container .search-results-container .node[data-showing-results].contains-important-results .book-icon .product-cover-rectangle,.search-container .search-results-container .node[data-showing-results].contains-important-results .product-item-index-container rect{stroke:#996300;stroke-width:2px}.search-container .search-results-container .node.hover .additional-commands-container{display:block}.search-container .search-results-container .node.contains-important-results .product-cover-rectangle,.search-container .search-results-container .node.contains-important-results .product-item-index-rectangle,.search-container .search-results-container .node.contains-important-results .subtree-label{fill:orange}.search-container .search-results-container .node.no-results text{fill:#b3b3b3}.search-container .search-results-container .node.no-results .product-item-index-rectangle{fill:#7b9ac5}.search-container .search-results-container .node .open-link-button{display:none}.search-container .search-results-container .node .subtree-label{opacity:0;transition:opacity .3s}.search-container .search-results-container .node.contains-results.contains-sub-tree:not(.is-open) .subtree-label{opacity:1}.search-container .search-results-container .node.contains-results.contains-sub-tree .node-label:hover{text-decoration:underline;cursor:pointer}.search-container .search-results-container .link{fill:none;stroke:#fff;stroke-width:2px}.search-container .search-results-container .search-tree-results-box{position:absolute;top:100px;left:100px;width:200px;min-height:200px;background-color:#40464c;display:none;font-size:13px}.search-container .search-results-container .search-tree-results-box .search-tree-results-box-header{margin:.2em;padding-bottom:.5em;padding-top:.5em;color:#fff;text-align:center;border-bottom:1px solid #d3d3d3}.search-container .search-results-container .search-tree-results-box .search-tree-results-box-header a{color:#fff;text-decoration:underline}.search-container .search-results-container .search-tree-results-box .search-tree-results-box-header a:active,.search-container .search-results-container .search-tree-results-box .search-tree-results-box-header a:focus,.search-container .search-results-container .search-tree-results-box .search-tree-results-box-header a:hover{color:#fff}.search-container .search-results-container .search-tree-results-box .search-tree-results-box-result-list{margin:.2em;padding:0;overflow-y:auto;overflow-x:hidden;list-style-type:none;font-size:13px}.search-container .search-results-container .search-product-item-container .title-container{color:#fff;margin:.4rem .2rem 0;border-bottom-style:solid;border-width:5px;border-color:#0e5ba9;font-size:16px;padding-top:4px;padding-bottom:4px}.search-container .search-results-container .search-product-item-container .search-element-results-count-container{font-weight:bolder}</style></head>
+
+<body id="top" class="show-dotd-bar product-show book-show nav-show">
+<script src="./Manning _ Deep Learning with R_files/application-7fe180222f4d76d8bcf13008b4579683.js.téléchargement" type="text/javascript"></script>
+<!--Google Tag Manager (noscript) --><noscript>&lt;iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59QHSR4" height="0" width="0" style="display:none;visibility:hidden"&gt;&lt;/iframe&gt;</noscript><!--End Google Tag Manager (noscript) -->
+
+
+
+
+
+
+<header id="header">
+    
+        <a href="https://www.manning.com/dotd" class="visible-xs deal-of-the-day deal-of-the-day-animated">
+            <div class="container">
+                <span class="fa fa-clock-o"></span>
+                <label>DotD:</label>
+                <span class="deal-of-the-day-link" uri="/dotd">
+                    <em class="deal-of-the-day-brief">Get Half off Swift in Depth - use code dotd012618</em>
+                </span>
+            </div>
+        </a>
+    
+    <nav class="navbar navbar-default navbar-static-top" id="top-nav">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header navbar-branded-xs visible-xs">
+
+                <div class="brand-wrapper">
+                    <a href="https://www.manning.com/" class="navbar-brand">
+                        <img src="./Manning _ Deep Learning with R_files/logo-044c1fdfbef2b63064d6f4999d51f496.svg" alt="Manning Publications Logo">
+                        <span class="sr-only">Manning publications</span>
+                    </a>
+                </div>
+                <button type="button" class="navbar-menu-toggle navbar-toggle collapsed menu-button" data-toggle="collapse" data-target="#primary-navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                    <a href="https://www.manning.com/cart" class="navbar-cart-xs cart-button">
+                        <span class="fa fa-shopping-cart"></span>
+                        <sup class="header-cart-count"></sup>
+                    </a>
+                
+            </div>
+
+            <div id="xs-search" class="visible-xs">
+                <form class="navbar-form xs-search-form visible-xs" id="mobile-search-form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input name="q" type="search" autocomplete="off" class="form-control" placeholder="search ALL our content">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="search-menu-wrapper">
+                    <div class="search-menu-results-container"></div>
+                </div>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="primary-navbar">
+                <ul class="nav navbar-nav">
+                    
+                    
+                    <li class="hidden-xs nav-home"><a href="https://www.manning.com/">home</a></li>
+                    <li class="nav-account visible-xs"><a href="https://www.manning.com/dashboard">dashboard</a></li>
+                    <li class="nav-account visible-xs signout-link" style="display: none;">
+                        <a href="https://login.manning.com/logout?service=https://www.manning.com/logout">sign out</a>
+                    </li>
+                    <li class="nav-catalog"><a href="https://www.manning.com/catalog">all products</a></li>
+                    <li class="nav-meaps"><a href="https://www.manning.com/meap-catalog">MEAP</a></li>
+                    <li class="nav-livevideo"><a href="https://www.manning.com/livevideo-program">liveVideo</a></li>
+                    
+                        <li class="nav-livebook"><a href="https://www.manning.com/livebook-catalog">liveBook</a></li>
+                    
+                    <li class="nav-support"><a href="https://www.manning.com/support">support</a></li>
+                    
+                    <li class="nav-divider hidden-sm hidden-xs" role="separator"></li>
+                    <li class="nav-freeContent hidden-sm"><a href="http://freecontent.manning.com/">free content</a></li>
+                    <li class="nav-forums hidden-sm"><a href="http://forums.manning.com/">forums</a></li>
+                </ul>
+                <ul class="hidden-xs nav navbar-nav navbar-right">
+                    <li class="nav-account"><a href="https://www.manning.com/dashboard">dashboard</a></li>
+                    <li class="nav-account signout-link" style="display: none;">
+                        <a href="https://login.manning.com/logout?service=https://www.manning.com/logout">sign out</a>
+                    </li>
+                    
+                        <li class="nav-cart">
+                            <a href="https://www.manning.com/cart" class="cart-button">
+                                <span class="fa fa-shopping-cart"></span>
+                                <sup class="header-cart-count"></sup>
+                            </a>
+                        </li>
+                    
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+    <div class="container hidden-xs big-bit">
+        <div class="row">
+            <a href="https://www.manning.com/" class="header-brand">
+            </a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-static-top navbar-inverse hidden-xs big-bit">
+        <div class="container">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="secondary-navbar">
+                <div class="secondary-navbar-wrapper">
+                    <div class="col-lg-4 col-sm-4 ">
+                        <ul class="nav navbar-nav navbar-social">
+                            <li title="Mail Preferences"><a href="https://www.manning.com/mail-preferences" tabindex="-1"><span class="fa fa-newspaper-o"></span><span aria-hidden="true" class="hidden">Mail Preferences</span></a>
+                            </li>
+                            <li title="Manning on Facebook"><a href="https://www.facebook.com/ManningBooks?ref=nf" tabindex="-1"><span class="fa fa-facebook"></span><span aria-hidden="true" class="hidden">Manning on Facebook</span></a>
+                            </li>
+                            <li title="Manning on Twitter"><a href="https://twitter.com/manningbooks" tabindex="-1"><span class="fa fa-twitter"></span><span aria-hidden="true" class="hidden">Manning on Twitter</span></a>
+                            </li>
+                            <li title="Manning on YouTube"><a href="https://www.youtube.com/channel/UCDia_lkNYKLJVLRLQl_-pFw" tabindex="-1"><span class="fa fa-youtube-play"></span><span aria-hidden="true" class="hidden">Manning on YouTube</span></a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-push-2 col-lg-6 col-sm-8">
+                        <form class="navbar-form form-horizontal" id="desktop-search-form">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input id="navbar-search" name="q" type="search" class="form-control" autocomplete="off" placeholder="search ALL our content">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.navbar-collapse -->
+            <div class="search-menu-wrapper">
+                <div class="search-menu-results-container"></div>
+            </div>
+        </div><!-- /.container -->
+    </nav>
+    
+        <a href="https://www.manning.com/dotd" class="hidden-xs deal-of-the-day deal-of-the-day-animated">
+            <div class="container">
+                <span class="fa fa-clock-o"></span>
+                <label>DEAL OF THE DAY:</label>
+                <span class="deal-of-the-day-link" id="dotd-link-non-mobile">
+                    <em class="deal-of-the-day-brief">Get Half off Swift in Depth - use code dotd012618</em>
+                </span>
+            </div>
+        </a>
+    
+</header>
+<script>
+    if (typeof jQuery !== 'undefined') {
+        (function ($) {
+            $.get("/cart/currentCartCount.json")
+                .done(function(data) {
+                    $(".header-cart-count").text(data['cartCount']);
+                }
+            );
+            $.get("/dashboard/userLoggedIn.json")
+                .done(function(data) {
+                    console.log("data['userLoggedIn'] " + data["userLoggedIn"]);
+                    if (data["userLoggedIn"] == true) {
+                        $(".signout-link").show();
+                    }
+                }
+            );
+        })(jQuery);
+
+        
+    }
+</script>
+
+
+
+            
+
+<div class="container content-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-12 product-header visible-sm visible-xs">
+                    <div class="title-space">
+                        <div class="product-title">
+                            Deep Learning with R
+                            
+                        </div>
+                        
+                        <div class="product-authorship">
+                            François Chollet with J. J. Allaire
+                            <div class="product-info">
+                            <ul>
+                                
+                                    
+                                        <li>
+                                            January 2018
+                                        </li>
+                                    
+                                    <li>
+                                        ISBN 9781617295546
+                                    </li>
+                                    <li>
+                                        360 pages
+                                    </li>
+                                
+                                
+                                    
+                                        <li>
+                                            printed in black &amp; white
+                                        </li>
+                                    
+                                
+                            </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-3 col-xs-12">
+
+                    <a class="product-thumbnail-container">
+                        
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-released">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        Deep Learning with R
+                    
+
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        François Chollet with J. J. Allaire
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/a/4e5e97f-4e8d-4d97-a715-f6c2b0eb95f5/Allaire-DLwithR-HI.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                    </a>
+                    
+                    
+                        
+                        <a href="https://livebook.manning.com/#!/book/deep-learning-with-r/" class="look-inside" target="_blank">
+                            <span class="btn btn-look-inside btn-livebook-look-inside">Look inside <span class="fa fa-external-link"></span></span>
+                        </a>
+                    
+
+                    
+                        <div class="visible-lg visible-md panel panel-default product-section-panel">
+                            <div class="panel-heading"><a name="downloads" class="anchor"></a>Free Downloads</div>
+                            <ul class="list-group">
+                                
+                                
+                                    
+                                        
+                                    
+                                
+                                    
+                                        
+                                    
+                                
+                                    
+                                        
+                                    
+                                
+                                    
+                                
+
+                                
+                                    <a href="https://manning-content.s3.amazonaws.com/download/6/3bdf613-e2f6-48fa-8710-b3bd0b7979e6/SampleCh01.pdf" class="list-group-item">Chapter 1 <i class="fa fa-cloud-download link-icon"></i></a>
+                                
+                                    <a href="https://manning-content.s3.amazonaws.com/download/4/481437b-2746-4ab1-94a7-c25eab8fae44/SampleCh02.pdf" class="list-group-item">Chapter 2 <i class="fa fa-cloud-download link-icon"></i></a>
+                                
+                                    <a href="https://manning-content.s3.amazonaws.com/download/9/9a3b0d8-e651-4239-8c4f-94267be64fee/SampleCh03.pdf" class="list-group-item">Chapter 3 <i class="fa fa-cloud-download link-icon"></i></a>
+                                
+                                    <a href="https://manning-content.s3.amazonaws.com/download/1/faf36a8-8958-40db-8020-3f106794d8ed/source-code.zip" class="list-group-item">Source Code <i class="fa fa-cloud-download link-icon"></i></a>
+                                
+                            </ul>
+                        </div>
+                    
+
+                    
+                        <div class="visible-lg visible-md panel panel-default product-section-panel">
+                            <div class="panel-heading"><a name="links" class="anchor"></a>Links</div>
+                            <ul class="list-group">
+                                
+                                    
+                                        <a href="https://forums.manning.com/forums/deep-learning-with-r" class="list-group-item" target="_blank">Book Forum</a>
+                                    
+                                
+                                    
+                                        <a href="https://github.com/jjallaire/deep-learning-with-r-notebooks" class="list-group-item" target="_blank">Source code on GitHub</a>
+                                    
+                                
+                                    
+                                        <a href="http://freecontent.manning.com/slideshare-deep-learning-for-r-users/" class="list-group-item" target="_blank">Slideshare: Deep Learning for R Users</a>
+                                    
+                                
+                                    
+                                        <a href="https://tensorflow.rstudio.com/blog/text-classification-with-keras.html" class="list-group-item" target="_blank">Article: Deep Learning for Text Classification with Keras</a>
+                                    
+                                
+                                    
+                                        <a href="https://tensorflow.rstudio.com/blog/keras-image-classification-on-small-datasets.html" class="list-group-item" target="_blank">Article: Image Classification on Small Datasets with Keras</a>
+                                    
+                                
+                                    
+                                        <a href="https://tensorflow.rstudio.com/blog/time-series-forecasting-with-recurrent-neural-networks.html" class="list-group-item" target="_blank">Article: Time Series Forecasting with Recurrent Neural Networks</a>
+                                    
+                                
+                                    
+                                        <a href="https://github.com/jjallaire/deep-learning-with-r-notebooks" class="list-group-item" target="_blank">Source code on GitHub</a>
+                                    
+                                
+                            </ul>
+                        </div>
+                    
+
+                    
+                </div>
+
+                <div class="col-sm-9 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 product-header hidden-sm hidden-xs">
+                            <div class="title-space">
+                                <div class="product-title">
+                                    Deep Learning with R
+                                    
+                                </div>
+                                
+                                <div class="product-authorship">
+                                    François Chollet with J. J. Allaire
+                                    <div class="product-info">
+                                    <ul>
+                                        
+                                            
+                                                <li>
+                                                    January 2018
+                                                </li>
+                                            
+                                            <li>
+                                                ISBN 9781617295546
+                                            </li>
+                                            <li>
+                                                360 pages
+                                            </li>
+                                        
+                                        
+                                            
+                                                <li>
+                                                    printed in black &amp; white
+                                                </li>
+                                            
+                                        
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+
+                            
+                            
+                                <div class="product-section">
+                                    <div class="well special-availability-date ebook-well">
+                                        ePub + Kindle available Feb 5, 2018
+                                    </div>
+                                </div>
+                            
+                            
+                            
+                            <div class="product-section">
+                                <div class="description-body">
+                                    
+                                        <blockquote class="large-book-quote">
+                                            <p>The clearest explanation of deep learning I have come across...it was a joy to read.</p>
+                                            <footer>Richard Tobias, Cephasonics</footer>
+                                        </blockquote>
+                                    
+                                    <p><i>Deep Learning with R</i> introduces the world of deep learning using the powerful Keras library and its R language interface. The book builds your understanding of deep learning through intuitive explanations and practical examples. </p>
+                                </div>
+                            </div>
+                            
+                                <div class="product-section table-of-contents standard-contents">
+                                    <div class="header">
+                                        Table of Contents <a id="show-hide">detailed table of contents</a>
+                                    </div>
+                                    <a name="toc" class="anchor"></a>
+                                    <div class="toc">
+                                        <h1 id="part_id_1" class="sect0">Part 1: The fundamentals of Deep Learning</h1>
+<div class="sect1 available free"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_1"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1" title="Read in liveBook" target="_blank"><span class="chap-link">1. What is deep learning?</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a><a href="https://www.manning.com/books/deep-learning-with-r#downloads" class="download-link"><span class="free-badge"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1" title="Read in liveBook" target="_blank"><h3 id="_artificial_intelligence_machine_learning_and_deep_learning">1.1. Artificial intelligence, machine learning, and deep learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-1" title="Read in liveBook" target="_blank"><h4 id="_artificial_intelligence">1.1.1. Artificial intelligence</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-2" title="Read in liveBook" target="_blank"><h4 id="_machine_learning">1.1.2. Machine Learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-3" title="Read in liveBook" target="_blank"><h4 id="_learning_representations_from_data">1.1.3. Learning representations from data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-4" title="Read in liveBook" target="_blank"><h4 id="_the_deep_in_deep_learning">1.1.4. The "deep" in deep learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-5" title="Read in liveBook" target="_blank"><h4 id="_understanding_how_deep_learning_works_in_three_figures">1.1.5. Understanding how deep learning works, in three figures</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-6" title="Read in liveBook" target="_blank"><h4 id="_what_deep_learning_has_achieved_so_far">1.1.6. What deep learning has achieved so far</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-7" title="Read in liveBook" target="_blank"><h4 id="_don_t_believe_the_short_term_hype">1.1.7. Don’t believe the short-term hype</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-1-8" title="Read in liveBook" target="_blank"><h4 id="_the_promise_of_ai">1.1.8. The promise of AI</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2" title="Read in liveBook" target="_blank"><h3 id="_before_deep_learning_a_brief_history_of_machine_learning">1.2. Before deep learning: a brief history of machine learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-1" title="Read in liveBook" target="_blank"><h4 id="_probabilistic_modeling">1.2.1. Probabilistic modeling</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-2" title="Read in liveBook" target="_blank"><h4 id="_early_neural_networks">1.2.2. Early neural networks</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-3" title="Read in liveBook" target="_blank"><h4 id="_kernel_methods">1.2.3. Kernel methods</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-4" title="Read in liveBook" target="_blank"><h4 id="_decision_trees_random_forests_and_gradient_boosting_machines">1.2.4. Decision trees, random forests, and gradient boosting machines</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-5" title="Read in liveBook" target="_blank"><h4 id="_back_to_neural_networks">1.2.5. Back to neural networks</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-6" title="Read in liveBook" target="_blank"><h4 id="_what_makes_deep_learning_different">1.2.6. What makes deep learning different</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-2-7" title="Read in liveBook" target="_blank"><h4 id="_the_modern_machine_learning_landscape">1.2.7. The modern machine-learning landscape</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3" title="Read in liveBook" target="_blank"><h3 id="_why_deep_learning_why_now">1.3. Why deep learning? Why now?</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3-1" title="Read in liveBook" target="_blank"><h4 id="_hardware">1.3.1. Hardware</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3-2" title="Read in liveBook" target="_blank"><h4 id="_data">1.3.2. Data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3-3" title="Read in liveBook" target="_blank"><h4 id="_algorithms">1.3.3. Algorithms</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3-4" title="Read in liveBook" target="_blank"><h4 id="_a_new_wave_of_investment">1.3.4. A new wave of investment</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3-5" title="Read in liveBook" target="_blank"><h4 id="_the_democratization_of_deep_learning">1.3.5. The democratization of deep learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-1/section-1-3-6" title="Read in liveBook" target="_blank"><h4 id="_will_it_last">1.3.6. Will it last?</h4></a>
+
+</div>
+</div>
+</div>
+</div>
+<div class="sect1 available free"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_2"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2" title="Read in liveBook" target="_blank"><span class="chap-link">2. Before we begin: the mathematical blocks of neural networks</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a><a href="https://www.manning.com/books/deep-learning-with-r#downloads" class="download-link"><span class="free-badge"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-1" title="Read in liveBook" target="_blank"><h3 id="_a_first_look_at_a_neural_network">2.1. A first look at a neural network</h3></a>
+
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2" title="Read in liveBook" target="_blank"><h3 id="_data_representations_for_neural_networks">2.2. Data representations for neural networks</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-1" title="Read in liveBook" target="_blank"><h4 id="_scalars_0d_tensors">2.2.1. Scalars (0D tensors)</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-2" title="Read in liveBook" target="_blank"><h4 id="_vectors_1d_tensors">2.2.2. Vectors (1D tensors)</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-3" title="Read in liveBook" target="_blank"><h4 id="_matrices_2d_tensors">2.2.3. Matrices (2D tensors)</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-4" title="Read in liveBook" target="_blank"><h4 id="_3d_tensors_and_higher_dimensional_tensors">2.2.4. 3D tensors and higher-dimensional tensors</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-5" title="Read in liveBook" target="_blank"><h4 id="_key_attributes">2.2.5. Key attributes</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-6" title="Read in liveBook" target="_blank"><h4 id="_manipulating_tensors_in_r">2.2.6. Manipulating tensors in R</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-7" title="Read in liveBook" target="_blank"><h4 id="_the_notion_of_data_batches">2.2.7. The notion of data batches</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-8" title="Read in liveBook" target="_blank"><h4 id="_real_world_examples_of_data_tensors">2.2.8. Real-world examples of data tensors</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-9" title="Read in liveBook" target="_blank"><h4 id="_vector_data">2.2.9. Vector data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-10" title="Read in liveBook" target="_blank"><h4 id="_timeseries_data_or_sequence_data">2.2.10. Timeseries data or sequence data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-11" title="Read in liveBook" target="_blank"><h4 id="_image_data">2.2.11. Image data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-2-12" title="Read in liveBook" target="_blank"><h4 id="_video_data">2.2.12. Video data</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-3" title="Read in liveBook" target="_blank"><h3 id="_the_gears_of_neural_networks_tensor_operations">2.3. The gears of neural networks: tensor operations</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-3-1" title="Read in liveBook" target="_blank"><h4 id="_element_wise_operations">2.3.1. Element-wise operations</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-3-2" title="Read in liveBook" target="_blank"><h4 id="_operations_involving_tensors_of_different_dimensions">2.3.2. Operations involving tensors of different dimensions</h4></a>
+<div class="sect4">
+<h5 id="_tensor_dot">Tensor dot</h5>
+
+</div>
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-3-3" title="Read in liveBook" target="_blank"><h4 id="_tensor_reshaping">2.3.3. Tensor reshaping</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-3-4" title="Read in liveBook" target="_blank"><h4 id="_geometric_interpretation_of_tensor_operations">2.3.4. Geometric interpretation of tensor operations</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-3-5" title="Read in liveBook" target="_blank"><h4 id="_a_geometric_interpretation_of_deep_learning">2.3.5. A geometric interpretation of deep learning</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-4" title="Read in liveBook" target="_blank"><h3 id="_the_engine_of_neural_networks_gradient_based_optimization">2.4. The engine of neural networks: gradient-based optimization</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-4-1" title="Read in liveBook" target="_blank"><h4 id="_what_s_a_derivative">2.4.1. What’s a derivative?</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-4-2" title="Read in liveBook" target="_blank"><h4 id="_derivative_of_a_tensor_operation_the_gradient">2.4.2. Derivative of a tensor operation: the gradient</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-4-3" title="Read in liveBook" target="_blank"><h4 id="_stochastic_gradient_descent">2.4.3. Stochastic gradient descent</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-4-4" title="Read in liveBook" target="_blank"><h4 id="_chaining_derivatives_the_backpropagation_algorithm">2.4.4. Chaining derivatives: the backpropagation algorithm</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-4-5" title="Read in liveBook" target="_blank"><h4 id="_in_summary_training_neural_networks_using_gradient_descent">2.4.5. In summary: training neural networks using gradient descent</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-5" title="Read in liveBook" target="_blank"><h3 id="_looking_back_at_our_first_example">2.5. Looking back at our first example</h3></a>
+
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-2/section-2-6" title="Read in liveBook" target="_blank"><h3 id="_summary">2.6. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<div class="sect1 available free"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_3"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3" title="Read in liveBook" target="_blank"><span class="chap-link">3. Getting started with neural networks</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a><a href="https://www.manning.com/books/deep-learning-with-r#downloads" class="download-link"><span class="free-badge"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-1" title="Read in liveBook" target="_blank"><h3 id="_anatomy_of_a_neural_network">3.1. Anatomy of a neural network</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-1-1" title="Read in liveBook" target="_blank"><h4 id="_layers_the_building_blocks_of_deep_learning">3.1.1. Layers: the building blocks of deep learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-1-2" title="Read in liveBook" target="_blank"><h4 id="_models_networks_of_layers">3.1.2. Models: networks of layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-1-3" title="Read in liveBook" target="_blank"><h4 id="_loss_functions_and_optimizers_keys_to_configuring_the_learning_process">3.1.3. Loss functions and optimizers: keys to configuring the learning process</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-2" title="Read in liveBook" target="_blank"><h3 id="_introduction_to_keras">3.2. Introduction to Keras</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-2-1" title="Read in liveBook" target="_blank"><h4 id="_keras_tensorflow_theano_and_cntk">3.2.1. Keras, TensorFlow, Theano, and CNTK</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-2-2" title="Read in liveBook" target="_blank"><h4 id="_installing_keras">3.2.2. Installing Keras</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-2-3" title="Read in liveBook" target="_blank"><h4 id="_developing_with_keras_a_quick_overview">3.2.3. Developing with Keras: a quick overview</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-3" title="Read in liveBook" target="_blank"><h3 id="_setting_up_a_deep_learning_workstation">3.3. Setting up a deep-learning workstation</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-3-1" title="Read in liveBook" target="_blank"><h4 id="_getting_keras_running_two_options">3.3.1. Getting Keras running: two options</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-3-2" title="Read in liveBook" target="_blank"><h4 id="_running_deep_learning_jobs_in_the_cloud_pros_and_cons">3.3.2. Running deep-learning jobs in the cloud: pros and cons</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-3-3" title="Read in liveBook" target="_blank"><h4 id="_what_is_the_best_gpu_for_deep_learning">3.3.3. What is the best GPU for deep learning?</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4" title="Read in liveBook" target="_blank"><h3 id="_classifying_movie_reviews_a_binary_classification_example">3.4. Classifying movie reviews: a binary classification example</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-1" title="Read in liveBook" target="_blank"><h4 id="_the_imdb_dataset">3.4.1. The IMDB dataset</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-2" title="Read in liveBook" target="_blank"><h4 id="_preparing_the_data">3.4.2. Preparing the data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-3" title="Read in liveBook" target="_blank"><h4 id="_building_your_network">3.4.3. Building your network</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-4" title="Read in liveBook" target="_blank"><h4 id="_validating_your_approach">3.4.4. Validating your approach</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-5" title="Read in liveBook" target="_blank"><h4 id="_using_a_trained_network_to_generate_predictions_on_new_data">3.4.5. Using a trained network to generate predictions on new data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-6" title="Read in liveBook" target="_blank"><h4 id="_further_experiments">3.4.6. Further experiments</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-4-7" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up">3.4.7. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5" title="Read in liveBook" target="_blank"><h3 id="_classifying_newswires_a_multiclass_classification_example">3.5. Classifying newswires: a multiclass classification example</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-1" title="Read in liveBook" target="_blank"><h4 id="_the_reuters_dataset">3.5.1. The Reuters dataset</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-2" title="Read in liveBook" target="_blank"><h4 id="_preparing_the_data_2">3.5.2. Preparing the data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-3" title="Read in liveBook" target="_blank"><h4 id="_building_your_network_2">3.5.3. Building your network</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-4" title="Read in liveBook" target="_blank"><h4 id="_validating_your_approach_2">3.5.4. Validating your approach</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-5" title="Read in liveBook" target="_blank"><h4 id="_generating_predictions_on_new_data">3.5.5. Generating predictions on new data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-6" title="Read in liveBook" target="_blank"><h4 id="_a_different_way_to_handle_the_labels_and_the_loss">3.5.6. A different way to handle the labels and the loss</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-7" title="Read in liveBook" target="_blank"><h4 id="_the_importance_of_having_sufficiently_large_intermediate_layers">3.5.7. The importance of having sufficiently large intermediate layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-8" title="Read in liveBook" target="_blank"><h4 id="_further_experiments_2">3.5.8. Further experiments</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-5-9" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_2">3.5.9. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-6" title="Read in liveBook" target="_blank"><h3 id="_predicting_house_prices_a_regression_example">3.6. Predicting house prices: a regression example</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-6-1" title="Read in liveBook" target="_blank"><h4 id="_the_boston_housing_price_dataset">3.6.1. The Boston Housing Price dataset</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-6-2" title="Read in liveBook" target="_blank"><h4 id="_preparing_the_data_3">3.6.2. Preparing the data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-6-3" title="Read in liveBook" target="_blank"><h4 id="_building_your_network_3">3.6.3. Building your network</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-6-4" title="Read in liveBook" target="_blank"><h4 id="_validating_your_approach_using_k_fold_validation">3.6.4. Validating your approach using K-fold validation</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-6-5" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_3">3.6.5. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-3/section-3-7" title="Read in liveBook" target="_blank"><h3 id="_summary_2">3.7. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<div class="sect1 available"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_4"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4" title="Read in liveBook" target="_blank"><span class="chap-link">4. Fundamentals of machine learning</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-1" title="Read in liveBook" target="_blank"><h3 id="_four_branches_of_machine_learning">4.1. Four branches of machine learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-1-1" title="Read in liveBook" target="_blank"><h4 id="_supervised_learning">4.1.1. Supervised learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-1-2" title="Read in liveBook" target="_blank"><h4 id="_unsupervised_learning">4.1.2. Unsupervised learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-1-3" title="Read in liveBook" target="_blank"><h4 id="_self_supervised_learning">4.1.3. Self-supervised learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-1-4" title="Read in liveBook" target="_blank"><h4 id="_reinforcement_learning">4.1.4. Reinforcement learning</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-2" title="Read in liveBook" target="_blank"><h3 id="_evaluating_machine_learning_models">4.2. Evaluating machine-learning models</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-2-1" title="Read in liveBook" target="_blank"><h4 id="_training_validation_and_test_sets">4.2.1. Training, validation, and test sets</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-2-2" title="Read in liveBook" target="_blank"><h4 id="_things_to_keep_in_mind">4.2.2. Things to keep in mind</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-3" title="Read in liveBook" target="_blank"><h3 id="_data_preprocessing_feature_engineering_and_feature_learning">4.3. Data preprocessing, feature engineering, and feature learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-3-1" title="Read in liveBook" target="_blank"><h4 id="_data_preprocessing_for_neural_networks">4.3.1. Data preprocessing for neural networks</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-3-2" title="Read in liveBook" target="_blank"><h4 id="_feature_engineering">4.3.2. Feature engineering</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-4" title="Read in liveBook" target="_blank"><h3 id="_overfitting_and_underfitting">4.4. Overfitting and underfitting</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-4-1" title="Read in liveBook" target="_blank"><h4 id="_reducing_the_network_s_size">4.4.1. Reducing the network’s size</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-4-2" title="Read in liveBook" target="_blank"><h4 id="_adding_weight_regularization">4.4.2. Adding weight regularization</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-4-3" title="Read in liveBook" target="_blank"><h4 id="_adding_dropout">4.4.3. Adding dropout</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5" title="Read in liveBook" target="_blank"><h3 id="_the_universal_workflow_of_machine_learning">4.5. The universal workflow of machine learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-1" title="Read in liveBook" target="_blank"><h4 id="_defining_the_problem_and_assembling_a_dataset">4.5.1. Defining the problem and assembling a dataset</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-2" title="Read in liveBook" target="_blank"><h4 id="_choosing_a_measure_of_success">4.5.2. Choosing a measure of success</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-3" title="Read in liveBook" target="_blank"><h4 id="_deciding_on_an_evaluation_protocol">4.5.3. Deciding on an evaluation protocol</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-4" title="Read in liveBook" target="_blank"><h4 id="_preparing_your_data">4.5.4. Preparing your data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-5" title="Read in liveBook" target="_blank"><h4 id="_developing_a_model_that_does_better_than_a_baseline">4.5.5. Developing a model that does better than a baseline</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-6" title="Read in liveBook" target="_blank"><h4 id="_scaling_up_developing_a_model_that_overfits">4.5.6. Scaling up: developing a model that overfits</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-5-7" title="Read in liveBook" target="_blank"><h4 id="_regularizing_your_model_and_tuning_your_hyperparameters">4.5.7. Regularizing your model and tuning your hyperparameters</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-4/section-4-6" title="Read in liveBook" target="_blank"><h3 id="_summary_3">4.6. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<h1 id="part_id_3" class="sect0">Part 2: Deep learning in practice</h1>
+<div class="sect1 available"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_5"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5" title="Read in liveBook" target="_blank"><span class="chap-link">5. Deep learning for computer vision</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-1" title="Read in liveBook" target="_blank"><h3 id="_introduction_to_convnets">5.1. Introduction to convnets</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-1-1" title="Read in liveBook" target="_blank"><h4 id="_the_convolution_operation">5.1.1. The convolution operation</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-1-2" title="Read in liveBook" target="_blank"><h4 id="_the_max_pooing_operation">5.1.2. The max-pooing operation</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-2" title="Read in liveBook" target="_blank"><h3 id="_training_a_convnet_from_scratch_on_a_small_dataset">5.2. Training a convnet from scratch on a small dataset</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-2-1" title="Read in liveBook" target="_blank"><h4 id="_the_relevance_of_deep_learning_for_small_data_problems">5.2.1. The relevance of deep learning for small-data problems</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-2-2" title="Read in liveBook" target="_blank"><h4 id="_downloading_the_data">5.2.2. Downloading the data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-2-3" title="Read in liveBook" target="_blank"><h4 id="_building_your_network_4">5.2.3. Building your network</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-2-4" title="Read in liveBook" target="_blank"><h4 id="_data_preprocessing">5.2.4. Data preprocessing</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-2-5" title="Read in liveBook" target="_blank"><h4 id="_using_data_augmentation">5.2.5. Using data augmentation</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-3" title="Read in liveBook" target="_blank"><h3 id="_using_a_pretrained_convnet">5.3. Using a pretrained convnet</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-3-1" title="Read in liveBook" target="_blank"><h4 id="_feature_extraction">5.3.1. Feature extraction</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-3-2" title="Read in liveBook" target="_blank"><h4 id="_fine_tuning">5.3.2. Fine-tuning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-3-3" title="Read in liveBook" target="_blank"><h4 id="_take_aways_using_convnets_with_small_datasets">5.3.3. Take-aways: using convnets with small datasets</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-4" title="Read in liveBook" target="_blank"><h3 id="_visualizing_what_convnets_learn">5.4. Visualizing what convnets learn</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-4-1" title="Read in liveBook" target="_blank"><h4 id="_visualizing_intermediate_activations">5.4.1. Visualizing intermediate activations</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-4-2" title="Read in liveBook" target="_blank"><h4 id="_visualizing_convnet_filters">5.4.2. Visualizing convnet filters</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-4-3" title="Read in liveBook" target="_blank"><h4 id="_visualizing_heatmaps_of_class_activation">5.4.3. Visualizing heatmaps of class activation</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-5/section-5-5" title="Read in liveBook" target="_blank"><h3 id="_summary_4">5.5. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<div class="sect1 available"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_6"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6" title="Read in liveBook" target="_blank"><span class="chap-link">6. Deep learning for text and sequences</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-1" title="Read in liveBook" target="_blank"><h3 id="_working_with_text_data">6.1. Working with text data</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-1-1" title="Read in liveBook" target="_blank"><h4 id="_one_hot_encoding_of_words_and_characters">6.1.1. One-hot encoding of words and characters</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-1-2" title="Read in liveBook" target="_blank"><h4 id="_using_word_embeddings">6.1.2. Using word embeddings</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-1-3" title="Read in liveBook" target="_blank"><h4 id="_putting_it_all_together_from_raw_text_to_word_embeddings">6.1.3. Putting it all together: from raw text to word embeddings</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-1-4" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_4">6.1.4. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-2" title="Read in liveBook" target="_blank"><h3 id="_understanding_recurrent_neural_networks">6.2. Understanding recurrent neural networks</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-2-1" title="Read in liveBook" target="_blank"><h4 id="_a_recurrent_layer_in_keras">6.2.1. A recurrent layer in Keras</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-2-2" title="Read in liveBook" target="_blank"><h4 id="_understanding_the_lstm_and_gru_layers">6.2.2. Understanding the LSTM and GRU layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-2-3" title="Read in liveBook" target="_blank"><h4 id="_a_concrete_lstm_example_in_keras">6.2.3. A concrete LSTM example in Keras</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-2-4" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_5">6.2.4. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3" title="Read in liveBook" target="_blank"><h3 id="_advanced_use_of_recurrent_neural_networks">6.3. Advanced use of recurrent neural networks</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-1" title="Read in liveBook" target="_blank"><h4 id="_a_temperature_forecasting_problem">6.3.1. A temperature-forecasting problem</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-2" title="Read in liveBook" target="_blank"><h4 id="_preparing_the_data_4">6.3.2. Preparing the data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-3" title="Read in liveBook" target="_blank"><h4 id="_a_common_sense_non_machine_learning_baseline">6.3.3. A common-sense, non-machine-learning baseline</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-4" title="Read in liveBook" target="_blank"><h4 id="_a_basic_machine_learning_approach">6.3.4. A basic machine-learning approach</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-5" title="Read in liveBook" target="_blank"><h4 id="_a_first_recurrent_baseline">6.3.5. A first recurrent baseline</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-6" title="Read in liveBook" target="_blank"><h4 id="_using_recurrent_dropout_to_fight_overfitting">6.3.6. Using recurrent dropout to fight overfitting</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-7" title="Read in liveBook" target="_blank"><h4 id="_stacking_recurrent_layers">6.3.7. Stacking recurrent layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-8" title="Read in liveBook" target="_blank"><h4 id="_using_bidirectional_rnns">6.3.8. Using bidirectional RNNs</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-9" title="Read in liveBook" target="_blank"><h4 id="_going_even_further">6.3.9. Going even further</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-3-10" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_6">6.3.10. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-4" title="Read in liveBook" target="_blank"><h3 id="_sequence_processing_with_convnets">6.4. Sequence processing with convnets</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-4-1" title="Read in liveBook" target="_blank"><h4 id="_understanding_1d_convolution_for_sequence_data">6.4.1. Understanding 1D convolution for sequence data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-4-2" title="Read in liveBook" target="_blank"><h4 id="_1d_pooling_for_sequence_data">6.4.2. 1D pooling for sequence data</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-4-3" title="Read in liveBook" target="_blank"><h4 id="_implementing_a_1d_convnet">6.4.3. Implementing a 1D convnet</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-4-4" title="Read in liveBook" target="_blank"><h4 id="_combining_cnns_and_rnns_to_process_long_sequences">6.4.4. Combining CNNs and RNNs to process long sequences</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-4-5" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_7">6.4.5. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-6/section-6-5" title="Read in liveBook" target="_blank"><h3 id="_summary_5">6.5. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<div class="sect1 available"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_7"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7" title="Read in liveBook" target="_blank"><span class="chap-link">7. Advanced deep-learning best practices</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1" title="Read in liveBook" target="_blank"><h3 id="_going_beyond_the_sequential_model_the_keras_functional_api">7.1. Going beyond the Sequential model: the Keras functional API</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-1" title="Read in liveBook" target="_blank"><h4 id="_introduction_to_the_functional_api">7.1.1. Introduction to the functional API</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-2" title="Read in liveBook" target="_blank"><h4 id="_multi_input_models">7.1.2. Multi-input models</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-3" title="Read in liveBook" target="_blank"><h4 id="_multi_output_models">7.1.3. Multi-output models</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-4" title="Read in liveBook" target="_blank"><h4 id="_directed_acyclic_graphs_of_layers">7.1.4. Directed acyclic graphs of layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-5" title="Read in liveBook" target="_blank"><h4 id="_layer_weight_sharing">7.1.5. Layer weight sharing</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-6" title="Read in liveBook" target="_blank"><h4 id="_models_as_layers">7.1.6. Models as layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-1-7" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_8">7.1.7. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-2" title="Read in liveBook" target="_blank"><h3 id="_inspecting_and_monitoring_deep_learning_models_using_keras_callbacks_and_tensorboard">7.2. Inspecting and monitoring deep-learning models using Keras callbacks and TensorBoard</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-2-1" title="Read in liveBook" target="_blank"><h4 id="_using_callbacks_to_act_on_a_model_during_training">7.2.1. Using callbacks to act on a model during training</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-2-2" title="Read in liveBook" target="_blank"><h4 id="_introduction_to_tensorboard_the_tensorflow_visualization_framework">7.2.2. Introduction to TensorBoard: the TensorFlow visualization framework</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-2-3" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_9">7.2.3. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-3" title="Read in liveBook" target="_blank"><h3 id="_getting_the_most_out_of_your_models">7.3. Getting the most out of your models</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-3-1" title="Read in liveBook" target="_blank"><h4 id="_advanced_architecture_patterns">7.3.1. Advanced architecture patterns</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-3-2" title="Read in liveBook" target="_blank"><h4 id="_hyperparameter_optimization">7.3.2. Hyperparameter optimization</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-3-3" title="Read in liveBook" target="_blank"><h4 id="_model_ensembling">7.3.3. Model ensembling</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-3-4" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_10">7.3.4. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-7/section-7-4" title="Read in liveBook" target="_blank"><h3 id="_summary_6">7.4. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<div class="sect1 available"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_8"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8" title="Read in liveBook" target="_blank"><span class="chap-link">8. Generative deep learning</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-1" title="Read in liveBook" target="_blank"><h3 id="_text_generation_with_lstm">8.1. Text generation with LSTM</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-1-1" title="Read in liveBook" target="_blank"><h4 id="_a_brief_history_of_generative_recurrent_networks">8.1.1. A brief history of generative recurrent networks</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-1-2" title="Read in liveBook" target="_blank"><h4 id="_how_do_you_generate_sequence_data">8.1.2. How do you generate sequence data?</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-1-3" title="Read in liveBook" target="_blank"><h4 id="_the_importance_of_the_sampling_strategy">8.1.3. The importance of the sampling strategy</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-1-4" title="Read in liveBook" target="_blank"><h4 id="_implementing_character_level_lstm_text_generation">8.1.4. Implementing character-level LSTM text generation</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-2" title="Read in liveBook" target="_blank"><h3 id="_deepdream">8.2. DeepDream</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-2-1" title="Read in liveBook" target="_blank"><h4 id="_implementing_deepdream_in_keras">8.2.1. Implementing DeepDream in Keras</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-2-2" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_11">8.2.2. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-3" title="Read in liveBook" target="_blank"><h3 id="_neural_style_transfer">8.3. Neural style transfer</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-3-1" title="Read in liveBook" target="_blank"><h4 id="_the_content_loss">8.3.1. The content loss</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-3-2" title="Read in liveBook" target="_blank"><h4 id="_the_style_loss">8.3.2. The style loss</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-3-3" title="Read in liveBook" target="_blank"><h4 id="_neural_style_transfer_in_keras">8.3.3. Neural style transfer in Keras</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-3-4" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_12">8.3.4. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-4" title="Read in liveBook" target="_blank"><h3 id="_generating_images_with_variational_autoencoders">8.4. Generating images with variational autoencoders</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-4-1" title="Read in liveBook" target="_blank"><h4 id="_sampling_from_latent_spaces_of_images">8.4.1. Sampling from latent spaces of images</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-4-2" title="Read in liveBook" target="_blank"><h4 id="_concept_vectors_for_image_editing">8.4.2. Concept vectors for image editing</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-4-3" title="Read in liveBook" target="_blank"><h4 id="_variational_autoencoders">8.4.3. Variational autoencoders</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-4-4" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_13">8.4.4. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5" title="Read in liveBook" target="_blank"><h3 id="_jmk_introduction_to_generative_adversarial_networks">8.5. jmk,Introduction to generative adversarial networks</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-1" title="Read in liveBook" target="_blank"><h4 id="_a_schematic_gan_implementation">8.5.1. A schematic GAN implementation</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-2" title="Read in liveBook" target="_blank"><h4 id="_a_bag_of_tricks">8.5.2. A bag of tricks</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-3" title="Read in liveBook" target="_blank"><h4 id="_the_generator">8.5.3. The generator</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-4" title="Read in liveBook" target="_blank"><h4 id="_the_discriminator">8.5.4. The discriminator</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-5" title="Read in liveBook" target="_blank"><h4 id="_the_adversarial_network">8.5.5. The adversarial network</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-6" title="Read in liveBook" target="_blank"><h4 id="_how_to_train_your_dcgan">8.5.6. How to train your DCGAN</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-5-7" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_14">8.5.7. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-8/section-8-6" title="Read in liveBook" target="_blank"><h3 id="_summary_7">8.6. Summary</h3></a>
+
+</div>
+</div>
+</div>
+<div class="sect1 available"><span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>
+<h2 id="chapter_id_9"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9" title="Read in liveBook" target="_blank"><span class="chap-link">9. Conclusions</span></a><a class="toc-controllo toc-expando"><span class="fa fa-caret-right expando" title="Expand"></span><span class="fa fa-caret-down retracto" title="Collapse"></span></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1" title="Read in liveBook" target="_blank"><h3 id="_key_concepts_in_review">9.1. Key concepts in review</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-1" title="Read in liveBook" target="_blank"><h4 id="_different_types_of_approaches_to_ai">9.1.1. Different types of approaches to AI</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-2" title="Read in liveBook" target="_blank"><h4 id="_what_makes_deep_learning_special_within_the_field_of_machine_learning">9.1.2. What makes deep learning special within the field of machine learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-3" title="Read in liveBook" target="_blank"><h4 id="_how_to_think_about_deep_learning">9.1.3. How to think about deep learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-4" title="Read in liveBook" target="_blank"><h4 id="_key_enabling_technologies">9.1.4. Key enabling technologies</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-5" title="Read in liveBook" target="_blank"><h4 id="_the_universal_machine_learning_workflow">9.1.5. The universal machine-learning workflow</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-6" title="Read in liveBook" target="_blank"><h4 id="_key_network_architectures">9.1.6. Key network architectures</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-1-7" title="Read in liveBook" target="_blank"><h4 id="_the_space_of_possibilities">9.1.7. The space of possibilities</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-2" title="Read in liveBook" target="_blank"><h3 id="_the_limitations_of_deep_learning">9.2. The limitations of deep learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-2-1" title="Read in liveBook" target="_blank"><h4 id="_the_risk_of_anthropomorphizing_machine_learning_models">9.2.1. The risk of anthropomorphizing machine-learning models</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-2-2" title="Read in liveBook" target="_blank"><h4 id="_local_generalization_vs_extreme_generalization">9.2.2. Local generalization vs. extreme generalization</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-2-3" title="Read in liveBook" target="_blank"><h4 id="_wrapping_up_15">9.2.3. Wrapping up</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-3" title="Read in liveBook" target="_blank"><h3 id="_the_future_of_deep_learning">9.3. The future of deep learning</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-3-1" title="Read in liveBook" target="_blank"><h4 id="_models_as_programs">9.3.1. Models as programs</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-3-2" title="Read in liveBook" target="_blank"><h4 id="_beyond_backpropagation_and_differentiable_layers">9.3.2. Beyond backpropagation and differentiable layers</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-3-3" title="Read in liveBook" target="_blank"><h4 id="_automated_machine_learning">9.3.3. Automated machine learning</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-3-4" title="Read in liveBook" target="_blank"><h4 id="_lifelong_learning_and_modular_subroutine_reuse">9.3.4. Lifelong learning and modular subroutine reuse</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-3-5" title="Read in liveBook" target="_blank"><h4 id="_the_long_term_vision">9.3.5. The long-term vision</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-4" title="Read in liveBook" target="_blank"><h3 id="_staying_up_to_date_in_a_fast_moving_field">9.4. Staying up to date in a fast-moving field</h3></a>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-4-1" title="Read in liveBook" target="_blank"><h4 id="_practice_on_real_world_problems_using_kaggle">9.4.1. Practice on real-world problems using Kaggle</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-4-2" title="Read in liveBook" target="_blank"><h4 id="_read_about_the_latest_developments_on_arxiv">9.4.2. Read about the latest developments on arXiv</h4></a>
+
+</div>
+<div class="sect3">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-4-3" title="Read in liveBook" target="_blank"><h4 id="_explore_the_keras_ecosystem">9.4.3. Explore the Keras ecosystem</h4></a>
+
+</div>
+</div>
+<div class="sect2">
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-9/section-9-5" title="Read in liveBook" target="_blank"><h3 id="_final_words">9.5. Final words</h3></a>
+
+</div>
+</div>
+</div>
+<h1 id="part" class="sect0">Appendixes</h1>
+<div class="sect1 available">
+<h2 id="_installing_keras_and_its_dependencies_on_ubuntu"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/appendix-a" title="Read in liveBook" target="_blank"><span class="chap-link">Appendix A: Installing Keras and its dependencies on Ubuntu</span></a><a class="toc-controllo toc-expando"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/appendix-a" title="Read in liveBook" target="_blank"><span class="fa fa-caret-right expando" title="Expand"></span></a><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/appendix-a" title="Read in liveBook" target="_blank"><span class="fa fa-caret-down retracto" title="Collapse"></span></a></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<h3 id="_overview_of_the_installation_process">A.1. Overview of the installation process</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_installing_the_python_scientific_suite">A.2. Installing the Python scientific suite</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_setting_up_gpu_support">A.3. Setting up GPU support</h3>
+<div class="sect3">
+<h4 id="_installing_cuda">A.3.1. Installing CUDA</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_installing_cudnn">A.3.2. Installing cuDNN</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_the_cuda_environment">A.3.3. The CUDA environment</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installing_keras_and_tensorflow">A.4. Installing Keras and Tensorflow</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1 available">
+<h2 id="_running_rstudio_server_on_a_ec2_gpu_instance"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/appendix-b" title="Read in liveBook" target="_blank"><span class="chap-link">Appendix B: Running RStudio Server on a EC2 GPU instance</span></a><a class="toc-controllo toc-expando"><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/appendix-b" title="Read in liveBook" target="_blank"><span class="fa fa-caret-right expando" title="Expand"></span></a><a href="https://livebook.manning.com/#!/book/deep-learning-with-r/appendix-b" title="Read in liveBook" target="_blank"><span class="fa fa-caret-down retracto" title="Collapse"></span></a></a></h2>
+<div class="sectionbody hidden-toc">
+<div class="sect2">
+<h3 id="_why_use_aws_for_deep_learning">B.1. Why use AWS for deep learning?</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_why_not_use_aws_for_deep_learning">B.2. Why not use AWS for deep learning?</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_setting_up_an_aws_gpu_instance">B.3. Setting up an AWS GPU instance</h3>
+<div class="sect3">
+<h4 id="_installing_r_and_rstudio_server">B.3.1. Installing R and RStudio Server</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_configuring_cuda">B.3.2. Configuring Cuda</h4>
+
+</div>
+<div class="sect3">
+<h4 id="_keras_prerequisites">B.3.3. Keras prerequisites</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="_accessing_rstudio_server">B.4. Accessing RStudio Server</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_installing_keras_2">B.5. Installing Keras</h3>
+
+</div>
+</div>
+</div>
+                                    </div>
+                                </div>
+                            
+                            
+                                <div>
+                                    <h2>About the Technology</h2>
+                                    <a name="aboutTechnology" class="anchor"></a>
+                                    <p>Machine learning has made remarkable progress in recent years. Deep-learning systems now enable previously impossible smart applications, revolutionizing image recognition and natural-language processing, and identifying complex patterns in data. The Keras deep-learning library provides data scientists and developers working in R a state-of-the-art toolset for tackling deep-learning tasks.</p>
+                                </div>
+                            
+                            
+                                <div>
+                                    <h2>About the book</h2>
+                                    <a name="aboutProduct" class="anchor"></a>
+                                    <p><i>Deep Learning with R</i> introduces the world of deep learning using the powerful Keras library and its R language interface. Initially written for Python as Deep Learning with Python by Keras creator and Google AI researcher François Chollet and adapted for R by RStudio founder J. J. Allaire, this book builds your understanding of deep learning through intuitive explanations and practical examples. You'll practice your new skills with R-based applications in computer vision, natural-language processing, and generative models.
+</p>
+                                </div>
+                            
+                            
+                                <div>
+                                    <h2>What's inside</h2>
+                                    <a name="whatsInside" class="anchor"></a>
+                                    <p></p><ul>
+<li>Deep learning from first principles</li>
+<li>Setting up your own deep-learning environment</li>
+<li>Image classification and generation</li>
+<li>Deep learning for text and sequences</li>
+</ul><p></p>
+                                </div>
+                            
+                            
+                                <div>
+                                    <h2>About the reader</h2>
+                                    <a name="aboutReader" class="anchor"></a>
+                                    <p>You'll need intermediate R programming skills. No previous experience with machine learning or deep learning is assumed.</p>
+                                </div>
+                            
+                            
+                                <div>
+                                    <h2>About the
+                                    authors
+                                    </h2>
+                                    <a name="aboutAuthor" class="anchor"></a>
+                                    <p><b>François Chollet</b> is a deep-learning researcher at Google and the author of the Keras library.</p>
+
+<p><b>J.J. Allaire</b> is the founder of RStudio and the author of the R interfaces to TensorFlow and Keras.</p>
+                                </div>
+                            
+
+                            
+                                
+                                    
+                                        
+                                            
+                                        
+                                        
+                                            
+                                        
+                                    
+                                
+                            
+                        </div>
+                        <hr class="visible-sm visible-xs">
+                        <div class="col-md-4">
+                            
+                            
+                                <a name="productOffering" class="anchor"></a>
+                                <div class="product-section purchase-box panel panel-default">
+                                    <div class="panel-heading">
+                                       <span class="product-header">Buy</span>
+                                    </div>
+                                    <div class="list-group">
+                                        
+                                            <div class="added-to-cart-modal modal fade" tabindex="-1" role="dialog" id="addedToCartModal-1886">
+                                                <div class="vertical-alignment-helper">
+                                                    <div class="modal-dialog vertical-align-center">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-9 col-sm-push-3 col-xs-12">
+                                                                            <em class="added-to-cart-title">
+                                                                                Deep Learning with R
+                                                                                <span class="product-offering-type">combo</span>
+                                                                            </em>
+                                                                            <div class="added-to-cart">added to cart</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div>
+                                            </div><!-- /.modal -->
+
+                                            <form action="https://www.manning.com/cart/addToCart" method="post" class="add-to-cart-form">
+                                                <div class="list-group-item">
+                                                     combo 
+                                                    <span class="pull-right price">$49,99</span>
+                                                    <span class="product-type-description">pBook + eBook  +
+                                                        liveBook
+                                                    
+                                                    </span>
+
+                                                    
+                                                        
+                                                    
+                                                </div>
+                                                <div class="list-group-item button-container">
+                                                    <input type="hidden" name="productOfferingId" value="1886" id="productOfferingId">
+                                                    <input type="hidden" name="quantity" value="1" id="quantity">
+                                                    <input type="hidden" name="slug" value="deep-learning-with-r" id="slug">
+                                                    <input type="submit" name="Submit" value="add to cart" class="add-to-cart btn btn-primary btn-sm btn-block" id="Submit">
+                                                </div>
+                                            </form>
+                                        
+                                            <div class="added-to-cart-modal modal fade" tabindex="-1" role="dialog" id="addedToCartModal-1887">
+                                                <div class="vertical-alignment-helper">
+                                                    <div class="modal-dialog vertical-align-center">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-9 col-sm-push-3 col-xs-12">
+                                                                            <em class="added-to-cart-title">
+                                                                                Deep Learning with R
+                                                                                <span class="product-offering-type">eBook</span>
+                                                                            </em>
+                                                                            <div class="added-to-cart">added to cart</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.modal-content -->
+                                                    </div><!-- /.modal-dialog -->
+                                                </div>
+                                            </div><!-- /.modal -->
+
+                                            <form action="https://www.manning.com/cart/addToCart" method="post" class="add-to-cart-form">
+                                                <div class="list-group-item">
+                                                     eBook 
+                                                    <span class="pull-right price">$39,99</span>
+                                                    <span class="product-type-description">pdf + ePub + kindle  +
+                                                        liveBook
+                                                    
+                                                    </span>
+
+                                                    
+                                                        
+                                                    
+                                                </div>
+                                                <div class="list-group-item button-container">
+                                                    <input type="hidden" name="productOfferingId" value="1887" id="productOfferingId">
+                                                    <input type="hidden" name="quantity" value="1" id="quantity">
+                                                    <input type="hidden" name="slug" value="deep-learning-with-r" id="slug">
+                                                    <input type="submit" name="Submit" value="add to cart" class="add-to-cart btn btn-primary btn-sm btn-block" id="Submit">
+                                                </div>
+                                            </form>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <div class="well">
+                                    <p><strong>FREE domestic shipping</strong> on three or more pBooks</p>
+                                    <ul class="list-unstyled shipping-list">
+                                        <li><a href="https://www.manning.com/shipping-and-returns#section-shipping-rates">complete shipping options</a></li>
+                                        <li><a href="https://www.manning.com/shipping-and-returns#section-returns-policy">our return/exchange policy</a></li>
+                                    </ul>
+                                </div>
+                            
+
+                            
+                                
+                                    <blockquote class="small-product-quote">
+                                        <p>An excellent hands-on introductory title, with great depth and breadth.</p>
+                                        <footer>David Blumenthal-Barby, Babbel</footer>
+                                    </blockquote>
+                                
+                                    <blockquote class="small-product-quote">
+                                        <p>Bridges the gap between the hype and a functioning deep-learning system.</p>
+                                        <footer>Peter Rabinovitch, Akamai</footer>
+                                    </blockquote>
+                                
+                                    <blockquote class="small-product-quote">
+                                        <p>All major topics and concepts of deep learning are covered and well explained, using code examples and diagrams instead of mathematical formulas.</p>
+                                        <footer>Srdjan Santic, Springboard.com</footer>
+                                    </blockquote>
+                                
+                            
+
+                            
+                                <div class="hidden-lg hidden-md panel panel-default product-section-panel">
+                                    <div class="panel-heading">Free Downloads</div>
+                                    <ul class="list-group">
+                                        
+                                            <a href="https://manning-content.s3.amazonaws.com/download/6/3bdf613-e2f6-48fa-8710-b3bd0b7979e6/SampleCh01.pdf" class="list-group-item">Chapter 1 <i class="fa fa-cloud-download"></i></a>
+                                        
+                                            <a href="https://manning-content.s3.amazonaws.com/download/4/481437b-2746-4ab1-94a7-c25eab8fae44/SampleCh02.pdf" class="list-group-item">Chapter 2 <i class="fa fa-cloud-download"></i></a>
+                                        
+                                            <a href="https://manning-content.s3.amazonaws.com/download/9/9a3b0d8-e651-4239-8c4f-94267be64fee/SampleCh03.pdf" class="list-group-item">Chapter 3 <i class="fa fa-cloud-download"></i></a>
+                                        
+                                            <a href="https://manning-content.s3.amazonaws.com/download/1/faf36a8-8958-40db-8020-3f106794d8ed/source-code.zip" class="list-group-item">Source Code <i class="fa fa-cloud-download"></i></a>
+                                        
+                                    </ul>
+                                </div>
+                            
+
+                            
+                                <div class="hidden-lg hidden-md panel panel-default product-section-panel">
+                                    <div class="panel-heading">Links</div>
+                                    <ul class="list-group">
+                                        
+                                            
+                                                <a href="https://forums.manning.com/forums/deep-learning-with-r" class="list-group-item" target="_blank">Book Forum</a>
+                                            
+                                        
+                                            
+                                                <a href="https://github.com/jjallaire/deep-learning-with-r-notebooks" class="list-group-item" target="_blank">Source code on GitHub</a>
+                                            
+                                        
+                                            
+                                                <a href="http://freecontent.manning.com/slideshare-deep-learning-for-r-users/" class="list-group-item" target="_blank">Slideshare: Deep Learning for R Users</a>
+                                            
+                                        
+                                            
+                                                <a href="https://tensorflow.rstudio.com/blog/text-classification-with-keras.html" class="list-group-item" target="_blank">Article: Deep Learning for Text Classification with Keras</a>
+                                            
+                                        
+                                            
+                                                <a href="https://tensorflow.rstudio.com/blog/keras-image-classification-on-small-datasets.html" class="list-group-item" target="_blank">Article: Image Classification on Small Datasets with Keras</a>
+                                            
+                                        
+                                            
+                                                <a href="https://tensorflow.rstudio.com/blog/time-series-forecasting-with-recurrent-neural-networks.html" class="list-group-item" target="_blank">Article: Time Series Forecasting with Recurrent Neural Networks</a>
+                                            
+                                        
+                                            
+                                                <a href="https://github.com/jjallaire/deep-learning-with-r-notebooks" class="list-group-item" target="_blank">Source code on GitHub</a>
+                                            
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+<div class="container-fluid space related-product-space hide-controls">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="visible-xs header-space">
+                        <div class="header-control-panel header-control-panel-left" href="#related-titles-carousel" role="button" data-slide="prev"></div>
+                        <div class="header-title">Related titles</div>
+                        <div class="header-control-panel header-control-panel-right" href="#related-titles-carousel" role="button" data-slide="next"></div>
+                    </h2>
+                    <h2 class="hidden-xs">Related titles</h2>
+                </div>
+                <div class="col-xs-12 carousel slide" id="related-titles-carousel" data-ride="carousel">
+                    <!-- Wrapper for slides -->
+                    <div class="row carousel-control-and-inner-wrapper">
+                        <div class="hidden-xs col-sm-1 col-sm-0-5 carousel-control-panel carousel-control-panel-left" href="#related-titles-carousel" role="button" data-slide="prev">
+                        </div>
+                        <div class="col-xs-12 col-sm-11">
+                            <div class="carousel-inner" role="listbox">
+                            <!-- Break on every 6 items, set the first one to active. -->
+                                
+                                    <div class="item active">
+                                        
+                                        <div class="first-child-offset-for-6">
+                                            
+                                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                                    
+                                                        <div class="book-cover-item">
+                                                            <a href="https://www.manning.com/books/deep-learning-for-search" class="book-cover-item-image-link">
+                                                                
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-meap">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        Deep Learning for Search
+                    
+
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        Tommaso Teofili
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/5/b192e7e-3798-4a2b-91fd-a03893694cc2/Teofili-DLS-MEAP-HI.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                                                            </a>
+                                                        </div>
+                                                    
+                                                </div>
+                                            
+                                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                                    
+                                                        <div class="book-cover-item">
+                                                            <a href="https://www.manning.com/books/data-munging-with-r" class="book-cover-item-image-link">
+                                                                
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-meap">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        Data Munging with R
+                    
+
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        Dr. Jonathan Carroll
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/7/3003658-da45-49c5-94a8-b7a38e6d3088/Carroll-DataM-MEAP-HI.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                                                            </a>
+                                                        </div>
+                                                    
+                                                </div>
+                                            
+                                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                                    
+                                                        <div class="book-cover-item">
+                                                            <a href="https://www.manning.com/books/r-in-action-second-edition" class="book-cover-item-image-link">
+                                                                
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-released">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        R in Action, Second Edition
+                    
+
+                    
+                        <div class="product-placeholder-subtitle">Data analysis and graphics with R</div>
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        Robert I. Kabacoff
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/1/82c427b-3e8b-423d-b49f-948cebab0a0b/kabacoff2_cover.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                                                            </a>
+                                                        </div>
+                                                    
+                                                </div>
+                                            
+                                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                                    
+                                                        <div class="book-cover-item">
+                                                            <a href="https://www.manning.com/books/grokking-deep-learning" class="book-cover-item-image-link">
+                                                                
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-meap">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        Grokking Deep Learning
+                    
+
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        Andrew W. Trask
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/a/2b99d49-847e-488c-ba6f-c919e0acb34e/Trask_GDL_hires.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                                                            </a>
+                                                        </div>
+                                                    
+                                                </div>
+                                            
+                                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                                    
+                                                        <div class="book-cover-item">
+                                                            <a href="https://www.manning.com/books/deep-learning-and-the-game-of-go" class="book-cover-item-image-link">
+                                                                
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-meap">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        Deep Learning and the Game of Go
+                    
+
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        Max Pumperla and Kevin Ferguson
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/d/c47e2da-2192-4063-8058-b7b77e705749/Pumperla-DL-MEAP-HI.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                                                            </a>
+                                                        </div>
+                                                    
+                                                </div>
+                                            
+                                                <div class="col-md-2 col-sm-4 col-xs-6">
+                                                    
+                                                        <div class="book-cover-item">
+                                                            <a href="https://www.manning.com/books/deep-learning-with-python" class="book-cover-item-image-link">
+                                                                
+    
+        
+        <div class="product-thumbnail product-placeholder  product-placeholder-released">
+            <div class="product-placeholder-titlespace">
+                <div class="product-placeholder-title">
+                    
+                        Deep Learning with Python
+                    
+
+                    
+                </div>
+            </div>
+            
+                <div class="product-placeholder-authorspace">
+                    <div class="product-placeholder-author">
+                        François Chollet
+                    </div>
+                </div>
+            
+            <div class="product-placeholder-meapspace"></div>
+        </div>
+        <div style="background-image: url(&#39;https://images.manning.com/720/960/resize/book/7/65fca1c-6826-472d-bbea-c1d4a7b3c570/Chollet-DLP-HI.png&#39;)" class="product-thumbnail">
+             
+        </div>
+    
+
+                                                            </a>
+                                                        </div>
+                                                    
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+                        <div class="hidden-xs col-sm-1 col-sm-0-5 carousel-control-panel carousel-control-panel-right" href="#related-titles-carousel" role="button" data-slide="next">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    if (typeof jQuery !== 'undefined') {
+        (function ($) {
+            var fbPixelAddToCartTriggersSoFar = 0;
+
+            var controllo = $("<a class='toc-controllo toc-expando'><span class='fa fa-caret-right expando' title='Expand'></span><span class='fa fa-caret-down retracto' title='Collapse'></span></a>");
+
+            // Append this only when children of their sectionbody siblings exist (appendices generally aren't expandable)
+            $(".sectionbody *").children("*").parents(".sectionbody").siblings("h2").wrapInner("<span class='chap-link'>").append(controllo);
+
+            $(".sectionbody").addClass("hidden-toc");
+
+            $("body").on("click", ".toc-expando", function(e) {
+                e.stopPropagation();
+                $(this).removeClass("toc-expando").addClass("toc-retracto").closest(".sect1").find(".sectionbody").removeClass("hidden-toc").addClass("shown-toc");
+            });
+            $("body").on("click", ".toc-retracto", function(e) {
+                e.stopPropagation();
+                $(this).removeClass("toc-retracto").addClass("toc-expando").closest(".sect1").find(".sectionbody").removeClass("shown-toc").addClass("hidden-toc");
+            });
+
+            $("body").on("click", ".available h2", function() {
+                $(this).find(".toc-controllo").click();
+            });
+
+            $("body").on("click", "#show-hide", function () {
+                if ($("#show-hide").hasClass("hide-full-toc")) {
+                    $(".table-of-contents .sect2, .table-of-contents .sect3").removeClass("shown-toc").addClass("hidden-toc");
+                    $("#show-hide").removeClass("hide-full-toc").html("detailed table of contents");
+                    $(".table-of-contents .body").removeClass("full-toc");
+                    $(".toc-retracto").click();
+                } else {
+                    $(".table-of-contents .sect2, .table-of-contents .sect3").addClass("shown-toc").removeClass("hidden-toc");
+                    $("#show-hide").addClass("hide-full-toc").html("brief table of contents");
+                    $(".table-of-contents .body").addClass("full-toc");
+                    $(".toc-expando").click();
+                }
+            });
+
+            $("body").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', ".add-to-cart click",
+                function () {
+                    $(this).removeClass("active");
+                }
+            );
+
+            $("#top-nav").on("webkitAnimationEnd oanimationend msAnimationEnd animationend", ".cart-button",
+                function () {
+                    $(this).removeClass("cart-button-active");
+                }
+            );
+
+            $(".free > h2").append("<a href='#downloads' class='download-link'><span class='free-badge'></span></a>");
+
+            $(".list-group input[type='radio']").on('change', function(e) {
+                $(".list-group-item").removeClass('selected');
+                $(e.target).closest('.list-group-item').addClass('selected');
+            });
+
+            $(".add-to-cart-form").on('submit', function(event) {
+                event.preventDefault();
+
+                var productOfferingId = $(this).find("input[name='productOfferingId']").first().val();
+                var thisButton = $(this).find("*[type='submit']");
+
+                thisButton.addClass("active").blur();
+                $(".cart-button").addClass("cart-button-active");
+
+                $.post("/cart/addToCart", $(this).serialize())
+                    .done(function(data) {
+                        $(".header-cart-count").text(data['cartCount']);
+
+                        cartContentRefresh(data.cart, productOfferingId);
+
+                        $('#addedToCartModal-' + productOfferingId).modal();
+
+                        setTimeout(function() {
+                            thisButton.removeClass("active");
+                            $('#addedToCartModal-' + productOfferingId).modal('hide');
+                            $(".cart-button").removeClass("cart-button-active");
+                        }, 2500);
+
+                        if (fbPixelAddToCartTriggersSoFar == 0) {
+                            fbq('track', 'AddToCart');
+                            fbPixelAddToCartTriggersSoFar++;
+                        }
+                    });
+            });
+
+            function cartContentRefresh(cart, addedProductOfferingId) {
+                var products = [];
+                for (var i = 0, len = cart.length; i < len; i++) {
+                    var item = cart[i];
+                    if (item.productOfferingId == addedProductOfferingId) {
+                        products.push({
+                            'name': item.title,
+                            'id': item.id,
+                            'price': item.cost,
+                            'brand': 'Manning',
+                            'category': item.productType,
+                            'variant': item.variant,
+                            'quantity': item.quantity
+                        });
+                    }
+                }
+                dataLayer.push({
+                    'event': 'addToCart',
+                    'ecommerce': {
+                        'add': {
+                            'products': products
+                        }
+                    },
+                });
+                for (var i = 0, len = cart.length; i < len; i++) {
+                    var item = cart[i];
+                    _ltk.SCA.AddItemWithLinks(item.sku, item.quantity, item.cost, item.desc, item.image, item.url);
+                }
+                _ltk.SCA.Submit();
+            }
+
+            (function(d) { if (document.addEventListener) document.addEventListener('ltkAsyncListener', d);
+            else {e = document.documentElement; e.ltkAsyncProperty = 0; e.attachEvent('onpropertychange', function (e) {
+                if (e.propertyName == 'ltkAsyncProperty'){d();}});}})(function() {
+                _ltk.Activity.AddProductBrowse('allaire');
+                _ltk.Activity.Submit();
+            });
+
+            
+            $("h2[id*='chapter_id_']").each(function(i, chapter) {
+                if ($(chapter).parent().hasClass('available')) {
+                    var chapterNumber = chapter.id.split(/_/).pop();
+
+                    var chapterUrl = "https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-" + chapterNumber;
+                    $(chapter).children(".chap-link").wrap("<a href=" + chapterUrl + " title='Read in liveBook' target='_blank'></a>");
+
+                    $(chapter).parent().prepend('<span class="book_actions"><a class="view-in-livebook" href="https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-' + chapterNumber + '/" title="Read in liveBook" target="_blank"><span class="sr-only">Read in liveBook</span></a></span>');
+                    $(chapter).parent().children("div[class*='sectionbody']").each(function(j, sectionsParent) {
+                        $(sectionsParent).children().each(function(k, sectionParent) {
+
+                            $(sectionParent).children("h3").each(function(l, section) {
+                                //wrap section in an a tag linking to livebook section k + 1
+                                var sectionUrl = "https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-" + chapterNumber + "/section-" + chapterNumber + "-" + (k + 1);
+                                $(section).wrap("<a href=" + sectionUrl + " title='Read in liveBook' target='_blank'></a>");
+                            });
+                            $(sectionParent).children("div[class='sect3']").each(function(m, subsectionParent) {
+                                $(subsectionParent).children("h4").each(function(n, subsection) {
+                                    //wrap section in an a tag linking to livebook subsection m + 1
+                                    var subsectionUrl = "https://livebook.manning.com/#!/book/deep-learning-with-r/chapter-" + chapterNumber + "/section-" + chapterNumber + "-" + (k + 1) + "-" + (m + 1);
+                                    $(subsection).wrap("<a href=" + subsectionUrl + " title='Read in liveBook' target='_blank'></a>");
+                                });
+                            });
+                        });
+                    });
+                }
+            });
+
+            var nonChapterSections = $(".sect1.available").find('h2').filter(function() {
+                return this.id.toLowerCase().indexOf('chapter') < 0;
+            });
+            if (nonChapterSections.length === 1){
+                var nonChapterSectionsUrl = "https://livebook.manning.com/#!/book/deep-learning-with-r/appendix";
+                $(nonChapterSections[0]).wrap("<a href=" + nonChapterSectionsUrl+ " title='Read in liveBook' target='_blank'></a>");
+            } else {
+                nonChapterSections.each(function (i, nonChapterSection) {
+                    var title = $(nonChapterSection).text();
+                    var slugIndex = title.indexOf(":");
+                    slugIndex = slugIndex > 0 ? slugIndex : title.length;
+                    title = title.substr(0, slugIndex);
+                    var slug = title.toLowerCase().split(" ").join("-");
+                    var nonChapterSectionsUrl = "https://livebook.manning.com/#!/book/deep-learning-with-r/" + slug;
+                    $(nonChapterSection).find("span").wrap("<a href=" + nonChapterSectionsUrl + " title='Read in liveBook' target='_blank'></a>");
+                });
+            }
+            
+
+        })(jQuery);
+    }
+
+    
+</script>
+
+        
+
+<div role="contentinfo" id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <dl>
+                            <dt>about</dt>
+                            <dd><a href="https://www.manning.com/manning">Manning</a></dd>
+                            <dd><a href="https://www.manning.com/meap-program">MEAP</a></dd>
+                            <dd><a href="https://www.manning.com/ebooks">eBooks</a></dd>
+                            <dd><a href="https://www.manning.com/livevideo-program">liveVideo</a></dd>
+                            
+                                <dd><a href="https://www.manning.com/livebook-program">liveBook</a></dd>
+                            
+                            <dd><a href="https://www.manning.com/covers">our covers</a></dd>
+                        </dl>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <dl>
+                            <dt>info &amp; inquiries</dt>
+                            <dd><a href="https://www.manning.com/manuscript-reviews">manuscript reviews</a></dd>
+                            <dd><a href="https://www.manning.com/user-group">user group program</a></dd>
+                            <dd><a href="https://www.manning.com/write-for-us">write for us</a></dd>
+                            <dd><a href="https://www.manning.com/academic">academic</a></dd>
+                            <dd><a href="https://www.manning.com/distributors">distributors</a></dd>
+                            <dd><a href="https://www.manning.com/careers">careers</a></dd>
+                        </dl>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <dl>
+                            <dt>help</dt>
+                            <dd><a href="https://www.manning.com/contact">contact</a></dd>
+                            <dd><a href="https://www.manning.com/freebook">register a pBook</a></dd>
+                            <dd><a href="https://www.manning.com/why-buy-from-manning">why buy from Manning?</a></dd>
+                            <dd><a href="https://www.manning.com/placing-an-order">placing an order</a></dd>
+                            <dd><a href="https://www.manning.com/shipping-and-returns">shipping &amp; returns</a></dd>
+                            <dd><a href="https://www.manning.com/faq">faq</a></dd>
+                        </dl>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <dl>
+                            <dt>legal</dt>
+                            <dd><a href="https://www.manning.com/privacy">privacy</a></dd>
+                            <dd><a href="https://www.manning.com/terms-of-use">terms of use</a></dd>
+                            <dd><a href="https://www.manning.com/ebook-license">eBook license</a></dd>
+                            <dd><a href="https://www.manning.com/source-code">source code</a></dd>
+                            <dd><a href="https://www.manning.com/translations">translations</a></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 col-md-push-6 text-right-md">
+                        
+                        <ul class="list-inline social-media-links">
+                            <li><a href="https://www.manning.com/mail-preferences" tabindex="-1"><span class="fa fa-newspaper-o"></span>Newsletter</a>
+                            </li>
+                            <li><a href="https://www.facebook.com/ManningBooks?ref=nf" tabindex="-1"><span class="fa fa-facebook"></span><span aria-hidden="true" class="hidden">Manning on</span>Facebook</a>
+                            </li>
+                            <li><a href="https://twitter.com/manningbooks" tabindex="-1"><span class="fa fa-twitter"></span><span aria-hidden="true" class="hidden">Manning on</span>Twitter</a>
+                            </li>
+                            <li><a href="https://www.youtube.com/channel/UCDia_lkNYKLJVLRLQl_-pFw" tabindex="-1"><span class="fa fa-youtube-play"></span><span aria-hidden="true" class="hidden">Manning on</span>YouTube</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6 col-md-pull-6 text-left-md">
+                        <div id="copyright">
+                        © 2018&nbsp;&nbsp;Manning Publications Co.&nbsp;&nbsp;<span class="hidden-xs">All rights reserved.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    (function(d) {
+        if (document.addEventListener) document.addEventListener('ltkAsyncListener', d);
+        else {e = document.documentElement; e.ltkAsyncProperty = 0; e.attachEvent('onpropertychange', function (e) {
+            if (e.propertyName == 'ltkAsyncProperty'){d();}});}
+    })
+    (function() {
+        _ltk.Click.Submit();
+    });
+    var biJsHost = (("https:" == document.location.protocol) ? "https://" : "http://");
+    (function (d, s, id, tid, vid) {
+        var js, ljs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return; js = d.createElement(s); js.id = id;
+        js.src = biJsHost + "cdn.listrakbi.com/scripts/script.js?m=" + tid + "&v=" + vid;
+        ljs.parentNode.insertBefore(js, ljs);
+    })(document, 'script', 'ltkSDK', 'oSRPiytUPTkk', '1');
+</script>
+
+
+
+<div id="ltk-snippet" style="display: none;">
+
+
+
+</div></body></html>

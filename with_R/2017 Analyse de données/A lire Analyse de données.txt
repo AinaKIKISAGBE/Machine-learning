@@ -1,0 +1,4 @@
+ce Projet n'a pas nécéssité un rapport car c'est les résultats que j'ai envoyé et au professeur a corrigé (le fichier:Aina_kiki_sagbe_.Rdata). 
+
+L'objectif de ce travail est de prédir les salaire des employé selon certain caractéristique. Pour cela, j'ai à ma disposition deux bases de données. une base qui contien les caractéristiques et les salaires puis une second base qui est celle qui celle dont le revenu sera prédit. J'ai construit un modèle d'apprentissage à partir de la première base pour réaliser la prédiction de la deuxième base.
+
